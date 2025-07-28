@@ -1,4 +1,3 @@
-using System;
 using R3;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,8 +15,13 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
     public Subject<Unit> OnCrouchFired { get; private set; } = new();
     public Subject<Unit> OnJumpFired { get; private set; } = new();
     public Subject<Unit> OnSprintFired { get; private set; } = new();
-    public Subject<Vector2> OnStartDrag { get; private set; } = new();
-    public Subject<Unit> OnEndDrag { get; private set; } = new();
+
+    /// <summary> ドラッグの向きをベクトルとしてパラメータに渡す </summary>
+    private Subject<Vector2> _onStartDrag = new();
+
+    public Observable<Vector2> OnStartDrag => _onStartDrag;
+    private Subject<Unit> _onEndDrag = new();
+    public Observable<Unit> OnEndDrag => _onEndDrag;
 
     #endregion
 
@@ -71,7 +75,7 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
             if (_mouseClicked)
             {
                 var currentpos = FirstScreenPosOnDrag = Mouse.current.position.ReadValue();
-                OnStartDrag.OnNext(currentpos - FirstScreenPosOnDrag);
+                _onStartDrag.OnNext(currentpos - FirstScreenPosOnDrag);
                 _dragging = true;
             }
         }
@@ -91,7 +95,7 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
             if (_dragging)
             {
                 _dragging = false;
-                OnEndDrag.OnNext(Unit.Default);
+                _onEndDrag.OnNext(Unit.Default);
             }
         }
 
