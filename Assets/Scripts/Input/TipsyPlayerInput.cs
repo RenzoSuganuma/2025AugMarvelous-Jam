@@ -16,10 +16,16 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
     public Subject<Unit> OnCrouchFired { get; private set; } = new();
     public Subject<Unit> OnJumpFired { get; private set; } = new();
     public Subject<Unit> OnSprintFired { get; private set; } = new();
+    public Subject<Vector2> OnStartDrag { get; private set; } = new();
+    public Subject<Unit> OnEndDrag { get; private set; } = new();
 
     #endregion
 
+    public Vector2 FirstScreenPosOnDrag { get; private set; } = Vector2.zero;
+
     private InputSystemActions _input;
+    private bool _mouseClicked = false;
+    private bool _dragging = false;
 
     private void Awake()
     {
@@ -61,11 +67,34 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
         if (context.action.name is "Look")
         {
             LookInput = context.ReadValue<Vector2>();
+
+            if (_mouseClicked)
+            {
+                var currentpos = FirstScreenPosOnDrag = Mouse.current.position.ReadValue();
+                OnStartDrag.OnNext(currentpos - FirstScreenPosOnDrag);
+                _dragging = true;
+            }
         }
     }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
+        if (context.action.name is "Attack" && context.started)
+        {
+            _mouseClicked = true;
+            FirstScreenPosOnDrag = Mouse.current.position.ReadValue();
+        }
+        else if (context.canceled && _mouseClicked)
+        {
+            _mouseClicked = false;
+
+            if (_dragging)
+            {
+                _dragging = false;
+                OnEndDrag.OnNext(Unit.Default);
+            }
+        }
+
         if (context.action.name is "Attack" && context.performed)
         {
             OnAttackFired.OnNext(Unit.Default);
