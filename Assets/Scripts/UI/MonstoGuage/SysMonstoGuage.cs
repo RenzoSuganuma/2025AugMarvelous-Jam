@@ -14,7 +14,6 @@ namespace ImTipsyDude.BolaBoom
         private DG.Tweening.Tween _guageUpTween;
         private bool _allowGuageUp = false;
         private float _eTime = 0;
-        private float _progress = 0;
 
         public override void OnStart()
         {
@@ -31,7 +30,7 @@ namespace ImTipsyDude.BolaBoom
                 .SetUpdate(UpdateType.Manual)
                 .OnUpdate(() =>
                 {
-                    _progress = en.Slider.value;
+                    _cmpMonstoGuage.Progress = en.Slider.value;
                 })
                 .OnComplete(() =>
                 {

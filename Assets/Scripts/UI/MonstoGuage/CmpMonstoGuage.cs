@@ -8,5 +8,6 @@ namespace ImTipsyDude.BolaBoom
         public int GuageMaxValue = 100;
         public float DurationToBeMax = 1f; // ドラッグ中にゲージMAXまで溜まる時間
         public float DelayToStartGuageUp = 1.5f; // ドラッグ中にゲージMAXまで溜まる時間
+        public float Progress;
     }
 }
