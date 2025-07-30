@@ -7,6 +7,7 @@ namespace ImTipsyDude.Scene
         public override void OnStart()
         {
             IECSWorld.Instance.StartLoadNextScene("Exit");
+            IECSWorld.Instance.UpdateInGameState(InGameState.Playing);
         }
 
         public override void OnUpdate()

@@ -1,7 +1,9 @@
+using ImTipsyDude.InstantECS;
 using R3;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[DefaultExecutionOrder((int)ExecutionOrder.Scene)]
 public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
 {
     public static TipsyPlayerInput Instance { get; private set; }
@@ -31,6 +33,8 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
     private bool _mouseClicked = false;
     private bool _dragging = false;
 
+    private IECSWorld _world;
+
     private void Awake()
     {
         _input = new();
@@ -44,6 +48,8 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
         {
             Instance = this;
         }
+
+        _world = IECSWorld.Instance;
     }
 
     private void OnDisable()
@@ -60,6 +66,8 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (_world.InGameState is InGameState.Waiting) return;
+
         if (context.action.name is "Move")
         {
             MoveInput = context.ReadValue<Vector2>();
@@ -68,6 +76,8 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
 
     public void OnLook(InputAction.CallbackContext context)
     {
+        if (_world.InGameState is InGameState.Waiting) return;
+
         if (context.action.name is "Look")
         {
             LookInput = context.ReadValue<Vector2>();
@@ -83,6 +93,8 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
 
     public void OnAttack(InputAction.CallbackContext context)
     {
+        if (_world.InGameState is InGameState.Waiting) return;
+
         if (context.action.name is "Attack" && context.started)
         {
             _mouseClicked = true;
@@ -107,6 +119,8 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        if (_world.InGameState is InGameState.Waiting) return;
+
         if (context.action.name is "Interact" && context.performed)
         {
             OnInteractFired.OnNext(Unit.Default);
@@ -115,6 +129,8 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
 
     public void OnCrouch(InputAction.CallbackContext context)
     {
+        if (_world.InGameState is InGameState.Waiting) return;
+
         if (context.action.name is "Crouch" && context.performed)
         {
             OnCrouchFired.OnNext(Unit.Default);
@@ -123,6 +139,8 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (_world.InGameState is InGameState.Waiting) return;
+        
         if (context.action.name is "Jump" && context.performed)
         {
             OnJumpFired.OnNext(Unit.Default);
@@ -139,6 +157,8 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
 
     public void OnSprint(InputAction.CallbackContext context)
     {
+        if ( _world.InGameState is InGameState.Waiting ) return;
+        
         if (context.action.name is "Sprint" && context.performed)
         {
             OnSprintFired.OnNext(Unit.Default);

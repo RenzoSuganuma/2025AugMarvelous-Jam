@@ -16,9 +16,9 @@ namespace ImTipsyDude.InstantECS
         public int ID => GetInstanceID();
 
         public abstract void OnStart();
+        public abstract void OnTerminate(); // OnDestroy
         public abstract void OnUpdate();
         public abstract void OnFixedUpdate();
-        public abstract void OnTerminate(); // OnDestroy
 
         public IECSEntity Entity => _currentEntity;
 

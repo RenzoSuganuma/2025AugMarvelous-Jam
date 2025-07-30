@@ -49,6 +49,13 @@ namespace ImTipsyDude.Player
             w.OnResume += OnResume;
         }
 
+        public override void OnTerminate()
+        {
+            var w = GetEntity<EnPlayer>().World;
+            w.OnPaused -= OnPaused;
+            w.OnResume -= OnResume;
+        }
+
         private void OnResume()
         {
             _rigidbody?.WakeUp();
@@ -66,10 +73,6 @@ namespace ImTipsyDude.Player
         }
 
         public override void OnFixedUpdate()
-        {
-        }
-
-        public override void OnTerminate()
         {
         }
 

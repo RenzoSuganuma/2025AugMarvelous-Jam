@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using ImTipsyDude.Helper;
 using ImTipsyDude.Player;
 using ImTipsyDude.Scene;
 using R3;
@@ -9,6 +10,7 @@ using UnityEngine.SceneManagement;
 
 namespace ImTipsyDude.InstantECS
 {
+    [RequireComponent(typeof(PauseResumer))]
     public sealed class IECSWorld : MonoBehaviour
     {
         [SerializeField] GameDimension _gameDimension;
@@ -19,13 +21,26 @@ namespace ImTipsyDude.InstantECS
         public SceneEntity CurrentScene { get; private set; }
 
         public static SceneEntity GetScene() => Instance.CurrentScene;
+        
+        public InGameState InGameState { get; private set; }
 
-        public event Action OnPaused;
-        public event Action OnResume;
+        public event Action OnPaused
+        {
+            add => _pauseResumer.OnPaused += value;
 
-        private bool _isPaused;
+            remove => _pauseResumer.OnPaused -= value;
+        }
 
-        private float _storedPlayerTimeScale;
+        public event Action OnResume
+        {
+            add => _pauseResumer.OnResume += value;
+
+            remove => _pauseResumer.OnResume -= value;
+        }
+
+        public void UpdateInGameState( InGameState state ) => InGameState = state;
+        
+        private PauseResumer _pauseResumer;
 
         private void Start()
         {
@@ -37,23 +52,13 @@ namespace ImTipsyDude.InstantECS
             PlayerTime.TimeScale = 1;
             PlayerTime.DeltaTime = Time.deltaTime;
             PlayerTime.UnscaledDeltaTime = Time.unscaledDeltaTime;
+
+            _pauseResumer = GetComponent<PauseResumer>();
         }
 
         public void PauseResume()
         {
-            switch (_isPaused)
-            {
-                case false: // On Pause
-                    Debug.Log("Pause");
-                    OnPaused?.Invoke();
-                    break;
-                case true: // On Resume
-                    Debug.Log("Resume");
-                    OnResume?.Invoke();
-                    break;
-            }
-
-            _isPaused = !_isPaused; // Toggle
+            _pauseResumer.PauseResume();
         }
 
         public void UpdateCurrentScene(SceneEntity scene)
