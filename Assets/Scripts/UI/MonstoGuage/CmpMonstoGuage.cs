@@ -1,3 +1,4 @@
+using System;
 using ImTipsyDude.Helper;
 using ImTipsyDude.InstantECS;
 using UnityEngine;
@@ -15,6 +16,11 @@ namespace ImTipsyDude.BolaBoom
         public override void OnStart()
         {
             EnInstanceIdPool.Instance.Map.Add(nameof(CmpMonstoGuage), ID);
+        }
+
+        private void OnDestroy()
+        {
+            EnInstanceIdPool.Instance.Map.Remove(nameof(CmpMonstoGuage));
         }
     }
 }
