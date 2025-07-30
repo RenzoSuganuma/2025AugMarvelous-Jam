@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
+using ImTipsyDude.BolaBoom;
 using ImTipsyDude.InstantECS;
 using UnityEngine;
 
@@ -27,14 +28,14 @@ namespace ImTipsyDude.Scene
         public void BindSystem(IECSSystem system)
             => _systems.Add(system.ID, system);
 
-        public void PullComponent(int componentId, out IECSComponent component)
+        public void PullComponent<T>(int componentId, out T component) where T : IECSComponent
         {
-            component = _components[componentId];
+            component = _components[componentId] as T;
         }
 
-        public void PullSystem(int systemId, out IECSSystem system)
+        public void PullSystem<T>(int systemId, out T system) where T : IECSSystem
         {
-            system = _systems[systemId];
+            system = _systems[systemId] as T;
         }
 
         private void Start()
