@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using ImTipsyDude.InstantECS;
@@ -14,6 +15,8 @@ namespace ImTipsyDude.BolaBoom
         private DG.Tweening.Tween _guageUpTween;
         private bool _allowGuageUp = false;
         private float _eTime = 0;
+
+        private bool _ispaused = false;
 
         public override void OnStart()
         {
@@ -37,7 +40,12 @@ namespace ImTipsyDude.BolaBoom
                 .Play();
 
             var input = TipsyPlayerInput.Instance;
-            input.OnStartDrag.Subscribe(_ => { _allowGuageUp = true; });
+            input.OnStartDrag.Subscribe(_ =>
+            {
+                if (_ispaused) return;
+
+                _allowGuageUp = true;
+            });
             input.OnEndDrag.Subscribe(_ =>
             {
                 _allowGuageUp = false;
@@ -45,13 +53,34 @@ namespace ImTipsyDude.BolaBoom
                 en.Slider.value = 0;
                 _guageUpTween.Restart();
             });
+
+            GetEntity<EnMonstoGuage>().World.OnPaused += OnPaused;
+            GetEntity<EnMonstoGuage>().World.OnResume += OnResume;
+        }
+
+        private void OnDestroy()
+        {
+            GetEntity<EnMonstoGuage>().World.OnPaused -= OnPaused;
+            GetEntity<EnMonstoGuage>().World.OnResume -= OnResume;
+        }
+
+        private void OnResume()
+        {
+            _ispaused = false;
+        }
+
+        private void OnPaused()
+        {
+            _ispaused = true;
         }
 
         private void Update()
         {
             if (_allowGuageUp)
             {
-                _guageUpTween.ManualUpdate(PlayerTime.DeltaTime, PlayerTime.UnscaledDeltaTime);
+                _guageUpTween.ManualUpdate(
+                    PlayerTime.DeltaTime * PlayerTime.TimeScale,
+                    PlayerTime.UnscaledDeltaTime);
             }
         }
     }
