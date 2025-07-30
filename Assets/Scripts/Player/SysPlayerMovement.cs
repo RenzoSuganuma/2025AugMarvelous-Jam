@@ -11,45 +11,21 @@ namespace ImTipsyDude.Player
         private TipsyPlayerInput _tipsyPlayerInput;
         private CmpPlayer _cmpPlayer;
 
-        private void OnFired()
+        private Vector3 _storedVelocity;
+
+        private void OnStartDrag(Vector2 value)
         {
         }
 
-        private void OnInteract()
+        private void OnEndDrag(Unit _)
         {
+            var guage = GetEntity<EnPlayer>().CmpMonstoGuage;
+            _rigidbody.AddForce((Vector3.forward + Vector3.up).normalized
+                * _cmpPlayer.LaunchForce *
+                guage.Progress / guage.GuageMaxValue,
+                ForceMode.VelocityChange);
         }
 
-        private void OnCrouch()
-        {
-        }
-
-        private void OnJump()
-        {
-        }
-
-        private void OnSprint()
-        {
-        }
-
-        private void Init()
-        {
-            if (Entity.World.GameDimension is GameDimension.TwoDimensional)
-            {
-                Entity.transform.position = Vector3.zero;
-            }
-        }
-
-        private void PlayerMove2D()
-        {
-            var horInput = _tipsyPlayerInput.MoveInput.x;
-            var velocity = horInput * Vector3.right;
-            transform.forward = velocity.normalized;
-            transform.position += velocity * Time.deltaTime;
-        }
-
-        private void PlayerMove3D()
-        {
-        }
 
         #region Event Functions
 
@@ -63,32 +39,40 @@ namespace ImTipsyDude.Player
             _cmpPlayer = GetComponent<CmpPlayer>();
 
             _tipsyPlayerInput = TipsyPlayerInput.Instance;
-            _tipsyPlayerInput.OnAttackFired.Subscribe(_ => OnFired()).AddTo(destroyCancellationToken);
-            _tipsyPlayerInput.OnInteractFired.Subscribe(_ => OnInteract()).AddTo(destroyCancellationToken);
-            _tipsyPlayerInput.OnCrouchFired.Subscribe(_ => OnCrouch()).AddTo(destroyCancellationToken);
-            _tipsyPlayerInput.OnJumpFired.Subscribe(_ => OnJump()).AddTo(destroyCancellationToken);
-            _tipsyPlayerInput.OnSprintFired.Subscribe(_ => OnSprint()).AddTo(destroyCancellationToken);
+            _tipsyPlayerInput.OnStartDrag.Subscribe(OnStartDrag);
+            _tipsyPlayerInput.OnEndDrag.Subscribe(OnEndDrag);
 
-            Init();
+
+            var w = GetEntity<EnPlayer>().World;
+            _tipsyPlayerInput.OnJumpFired.Subscribe(_ => { w.PauseResume(); });
+            w.OnPaused += OnPaused;
+            w.OnResume += OnResume;
+        }
+
+        public override void OnTerminate()
+        {
+            var w = GetEntity<EnPlayer>().World;
+            w.OnPaused -= OnPaused;
+            w.OnResume -= OnResume;
+        }
+
+        private void OnResume()
+        {
+            _rigidbody?.WakeUp();
+            _rigidbody!.velocity = _storedVelocity;
+        }
+
+        private void OnPaused()
+        {
+            _storedVelocity = _rigidbody.velocity;
+            _rigidbody?.Sleep();
         }
 
         public override void OnUpdate()
         {
-            if (Entity.World.GameDimension is GameDimension.ThreeDimensional)
-            {
-                PlayerMove3D();
-            }
-            else
-            {
-                PlayerMove2D();
-            }
         }
 
         public override void OnFixedUpdate()
-        {
-        }
-
-        public override void OnTerminate()
         {
         }
 

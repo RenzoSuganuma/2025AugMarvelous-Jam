@@ -4,6 +4,6 @@ namespace ImTipsyDude.Player
 {
     public class CmpPlayer : IECSComponent
     {
-        public float MoveSpeed;
+        public float LaunchForce;
     }
 }

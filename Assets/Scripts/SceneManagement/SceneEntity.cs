@@ -57,8 +57,8 @@ namespace ImTipsyDude.Scene
 
         private void OnDestroy()
         {
-            _components.Clear();
-            _systems.Clear();
+            _components?.Clear();
+            _systems?.Clear();
             AsyncOperation = null;
             OnTerminate();
         }
