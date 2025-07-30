@@ -26,7 +26,7 @@ namespace ImTipsyDude.Camera
             _cmpPlayerCam = gameObject.GetComponent<CmpPlayerCamera>();
         }
 
-        public override void OnUpdate()
+        private void Update()
         {
             if (Entity.World.GameDimension is GameDimension.ThreeDimensional)
             {
@@ -36,14 +36,6 @@ namespace ImTipsyDude.Camera
             {
                 Move2D();
             }
-        }
-
-        public override void OnFixedUpdate()
-        {
-        }
-
-        public override void OnTerminate()
-        {
         }
 
         #endregion

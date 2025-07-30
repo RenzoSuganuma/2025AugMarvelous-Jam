@@ -18,18 +18,6 @@ namespace ImTipsyDude
             }
         }
 
-        public override void OnUpdate()
-        {
-        }
-
-        public override void OnFixedUpdate()
-        {
-        }
-
-        public override void OnTerminate()
-        {
-        }
-
         public void Show(float duration = 1.0f)
         {
             _canvasGroup.DOFade(1f, duration);

@@ -32,18 +32,10 @@ public class SysEntryWindow : IECSSystem
         entity.ExitInGameButton.GetComponentInChildren<TMP_Text>().text = "QUIT GAME";
     }
 
-    public override void OnUpdate()
+    private void Update()
     {
         var e = GetEntity<EnEntryWindow>();
         var condition = e.World.CurrentScene.AsyncOperation.progress >= 0.9f;
         e.EnterInGameButton.interactable = condition;
-    }
-
-    public override void OnFixedUpdate()
-    {
-    }
-
-    public override void OnTerminate()
-    {
     }
 }

@@ -13,16 +13,4 @@ public class SysSlider : IECSSystem
     {
         _cmpSlider = GetComponent<CmpSlider>();
     }
-
-    public override void OnUpdate()
-    {
-    }
-
-    public override void OnFixedUpdate()
-    {
-    }
-
-    public override void OnTerminate()
-    {
-    }
 }

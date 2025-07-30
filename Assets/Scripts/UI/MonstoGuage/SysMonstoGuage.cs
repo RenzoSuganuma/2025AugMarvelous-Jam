@@ -28,6 +28,7 @@ namespace ImTipsyDude.BolaBoom
                     _cmpMonstoGuage.DurationToBeMax)
                 .SetDelay(_cmpMonstoGuage.DelayToStartGuageUp)
                 .SetUpdate(UpdateType.Manual)
+                .OnUpdate(() => { _cmpMonstoGuage.ProgressForUI = en.Slider.value / en.Slider.maxValue; })
                 .OnComplete(() =>
                 {
                     en.Slider.value = 0;
@@ -46,20 +47,12 @@ namespace ImTipsyDude.BolaBoom
             });
         }
 
-        public override void OnUpdate()
+        private void Update()
         {
             if (_allowGuageUp)
             {
                 _guageUpTween.ManualUpdate(PlayerTime.DeltaTime, PlayerTime.UnscaledDeltaTime);
             }
-        }
-
-        public override void OnFixedUpdate()
-        {
-        }
-
-        public override void OnTerminate()
-        {
         }
     }
 }
