@@ -16,9 +16,6 @@ namespace ImTipsyDude.InstantECS
         public int ID => GetInstanceID();
 
         public abstract void OnStart();
-        public abstract void OnTerminate(); // OnDestroy
-        public abstract void OnUpdate();
-        public abstract void OnFixedUpdate();
 
         public IECSEntity Entity => _currentEntity;
 
@@ -29,21 +26,6 @@ namespace ImTipsyDude.InstantECS
             _currentEntity = gameObject.GetComponent<IECSEntity>();
             IECSWorld.GetScene().BindSystem(this);
             OnStart();
-        }
-
-        private void Update()
-        {
-            OnUpdate();
-        }
-
-        private void FixedUpdate()
-        {
-            OnFixedUpdate();
-        }
-
-        private void OnDestroy()
-        {
-            OnTerminate();
         }
     }
 }

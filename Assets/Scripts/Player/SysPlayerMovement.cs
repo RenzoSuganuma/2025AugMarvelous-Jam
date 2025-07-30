@@ -49,7 +49,7 @@ namespace ImTipsyDude.Player
             w.OnResume += OnResume;
         }
 
-        public override void OnTerminate()
+        private void OnDestroy()
         {
             var w = GetEntity<EnPlayer>().World;
             w.OnPaused -= OnPaused;
@@ -66,14 +66,6 @@ namespace ImTipsyDude.Player
         {
             _storedVelocity = _rigidbody.velocity;
             _rigidbody?.Sleep();
-        }
-
-        public override void OnUpdate()
-        {
-        }
-
-        public override void OnFixedUpdate()
-        {
         }
 
         #endregion

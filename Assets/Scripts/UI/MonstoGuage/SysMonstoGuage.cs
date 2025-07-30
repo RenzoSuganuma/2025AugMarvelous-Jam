@@ -46,20 +46,12 @@ namespace ImTipsyDude.BolaBoom
             });
         }
 
-        public override void OnUpdate()
+        private void Update()
         {
             if (_allowGuageUp)
             {
                 _guageUpTween.ManualUpdate(PlayerTime.DeltaTime, PlayerTime.UnscaledDeltaTime);
             }
-        }
-
-        public override void OnFixedUpdate()
-        {
-        }
-
-        public override void OnTerminate()
-        {
         }
     }
 }

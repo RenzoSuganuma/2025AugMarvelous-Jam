@@ -27,16 +27,4 @@ public class SysNotification : IECSSystem
 
         _seq.Play();
     }
-
-    public override void OnUpdate()
-    {
-    }
-
-    public override void OnFixedUpdate()
-    {
-    }
-
-    public override void OnTerminate()
-    {
-    }
 }
