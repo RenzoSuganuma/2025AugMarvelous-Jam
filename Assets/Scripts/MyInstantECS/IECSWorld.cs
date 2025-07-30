@@ -20,6 +20,13 @@ namespace ImTipsyDude.InstantECS
 
         public static SceneEntity GetScene() => Instance.CurrentScene;
 
+        public event Action OnPaused;
+        public event Action OnResume;
+
+        private bool _isPaused;
+
+        private float _storedPlayerTimeScale;
+
         private void Start()
         {
             if (Instance == null)
@@ -30,6 +37,23 @@ namespace ImTipsyDude.InstantECS
             PlayerTime.TimeScale = 1;
             PlayerTime.DeltaTime = Time.deltaTime;
             PlayerTime.UnscaledDeltaTime = Time.unscaledDeltaTime;
+        }
+
+        public void PauseResume()
+        {
+            switch (_isPaused)
+            {
+                case false: // On Pause
+                    Debug.Log("Pause");
+                    OnPaused?.Invoke();
+                    break;
+                case true: // On Resume
+                    Debug.Log("Resume");
+                    OnResume?.Invoke();
+                    break;
+            }
+
+            _isPaused = !_isPaused; // Toggle
         }
 
         public void UpdateCurrentScene(SceneEntity scene)

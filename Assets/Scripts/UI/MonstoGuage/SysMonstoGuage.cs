@@ -28,10 +28,6 @@ namespace ImTipsyDude.BolaBoom
                     _cmpMonstoGuage.DurationToBeMax)
                 .SetDelay(_cmpMonstoGuage.DelayToStartGuageUp)
                 .SetUpdate(UpdateType.Manual)
-                .OnUpdate(() =>
-                {
-                    _cmpMonstoGuage.Progress = en.Slider.value;
-                })
                 .OnComplete(() =>
                 {
                     en.Slider.value = 0;
@@ -44,6 +40,7 @@ namespace ImTipsyDude.BolaBoom
             input.OnEndDrag.Subscribe(_ =>
             {
                 _allowGuageUp = false;
+                _cmpMonstoGuage.Progress = en.Slider.value;
                 en.Slider.value = 0;
                 _guageUpTween.Restart();
             });
