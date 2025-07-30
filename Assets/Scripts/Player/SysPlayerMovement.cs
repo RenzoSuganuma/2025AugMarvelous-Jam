@@ -12,6 +12,7 @@ namespace ImTipsyDude.Player
         private CmpPlayer _cmpPlayer;
 
         private Vector3 _storedVelocity;
+        private bool _ispaused = false;
 
         private void OnStartDrag(Vector2 value)
         {
@@ -19,6 +20,7 @@ namespace ImTipsyDude.Player
 
         private void OnEndDrag(Unit _)
         {
+            if (_ispaused) return;
             var guage = GetEntity<EnPlayer>().CmpMonstoGuage;
             _rigidbody.AddForce((Vector3.forward + Vector3.up).normalized
                 * _cmpPlayer.LaunchForce *
@@ -58,12 +60,14 @@ namespace ImTipsyDude.Player
 
         private void OnResume()
         {
+            _ispaused = false;
             _rigidbody?.WakeUp();
             _rigidbody!.velocity = _storedVelocity;
         }
 
         private void OnPaused()
         {
+            _ispaused = true;
             _storedVelocity = _rigidbody.velocity;
             _rigidbody?.Sleep();
         }
