@@ -3,13 +3,13 @@ using ImTipsyDude.InstantECS;
 using R3;
 using UnityEngine;
 
-namespace ImTipsyDude.Player
+namespace ImTipsyDude.BolaBoom.Player
 {
-    public class SysPlayerMovement : IECSSystem
+    public class SysBolaBoomPlayerMove : IECSSystem
     {
         private Rigidbody _rigidbody;
         private TipsyPlayerInput _tipsyPlayerInput;
-        private CmpPlayer _cmpPlayer;
+        private CmpBolaBoomPlayer _cmpBolaBoomPlayer;
 
         private Vector3 _storedVelocity;
         private bool _ispaused = false;
@@ -18,12 +18,12 @@ namespace ImTipsyDude.Player
         {
         }
 
-        private void OnEndDrag(Unit _)
+        private void OnEndDrag(Vector2 _)
         {
             if (_ispaused) return;
-            var guage = GetEntity<EnPlayer>().CmpMonstoGuage;
+            var guage = GetEntity<EnBolaBoomPlayer>().CmpMonstoGuage;
             _rigidbody.AddForce((Vector3.forward + Vector3.up).normalized
-                * _cmpPlayer.LaunchForce *
+                * _cmpBolaBoomPlayer.LaunchForce *
                 guage.Progress / guage.GuageMaxValue,
                 ForceMode.VelocityChange);
         }
@@ -38,14 +38,14 @@ namespace ImTipsyDude.Player
                 _rigidbody = gameObject.AddComponent<Rigidbody>();
             }
 
-            _cmpPlayer = GetComponent<CmpPlayer>();
+            _cmpBolaBoomPlayer = GetComponent<CmpBolaBoomPlayer>();
 
             _tipsyPlayerInput = TipsyPlayerInput.Instance;
             _tipsyPlayerInput.OnStartDrag.Subscribe(OnStartDrag);
             _tipsyPlayerInput.OnEndDrag.Subscribe(OnEndDrag);
 
 
-            var w = GetEntity<EnPlayer>().World;
+            var w = GetEntity<EnBolaBoomPlayer>().World;
             _tipsyPlayerInput.OnJumpFired.Subscribe(_ => { w.PauseResume(); });
             w.OnPaused += OnPaused;
             w.OnResume += OnResume;
@@ -53,7 +53,7 @@ namespace ImTipsyDude.Player
 
         private void OnDestroy()
         {
-            var w = GetEntity<EnPlayer>().World;
+            var w = GetEntity<EnBolaBoomPlayer>().World;
             w.OnPaused -= OnPaused;
             w.OnResume -= OnResume;
         }

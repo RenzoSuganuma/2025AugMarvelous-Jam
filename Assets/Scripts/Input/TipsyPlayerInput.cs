@@ -22,8 +22,8 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
     private Subject<Vector2> _onStartDrag = new();
 
     public Observable<Vector2> OnStartDrag => _onStartDrag;
-    private Subject<Unit> _onEndDrag = new();
-    public Observable<Unit> OnEndDrag => _onEndDrag;
+    private Subject<Vector2> _onEndDrag = new();
+    public Observable<Vector2> OnEndDrag => _onEndDrag;
 
     #endregion
 
@@ -34,6 +34,8 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
     private bool _dragging = false;
 
     private IECSWorld _world;
+
+    private Vector2 _screenCenter;
 
     private void Awake()
     {
@@ -50,6 +52,10 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
         }
 
         _world = IECSWorld.Instance;
+
+        var h = Screen.currentResolution.height;
+        var w = Screen.currentResolution.width;
+        _screenCenter = new Vector2(w, h) / 2f;
     }
 
     private void OnDisable()
@@ -84,8 +90,8 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
 
             if (_mouseClicked)
             {
-                var currentpos = FirstScreenPosOnDrag = Mouse.current.position.ReadValue();
-                _onStartDrag.OnNext(currentpos - FirstScreenPosOnDrag);
+                var currentpos = Mouse.current.position.ReadValue() - _screenCenter;
+                _onStartDrag.OnNext(currentpos - _screenCenter);
                 _dragging = true;
             }
         }
@@ -98,7 +104,7 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
         if (context.action.name is "Attack" && context.started)
         {
             _mouseClicked = true;
-            FirstScreenPosOnDrag = Mouse.current.position.ReadValue();
+            FirstScreenPosOnDrag = Mouse.current.position.ReadValue() - _screenCenter;
         }
         else if (context.canceled && _mouseClicked)
         {
@@ -107,7 +113,8 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
             if (_dragging)
             {
                 _dragging = false;
-                _onEndDrag.OnNext(Unit.Default);
+                var nowPos = Mouse.current.position.ReadValue() - _screenCenter;
+                _onEndDrag.OnNext(nowPos - FirstScreenPosOnDrag);
             }
         }
 
@@ -140,7 +147,7 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
     public void OnJump(InputAction.CallbackContext context)
     {
         if (_world.InGameState is InGameState.Waiting) return;
-        
+
         if (context.action.name is "Jump" && context.performed)
         {
             OnJumpFired.OnNext(Unit.Default);
@@ -157,8 +164,8 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
 
     public void OnSprint(InputAction.CallbackContext context)
     {
-        if ( _world.InGameState is InGameState.Waiting ) return;
-        
+        if (_world.InGameState is InGameState.Waiting) return;
+
         if (context.action.name is "Sprint" && context.performed)
         {
             OnSprintFired.OnNext(Unit.Default);

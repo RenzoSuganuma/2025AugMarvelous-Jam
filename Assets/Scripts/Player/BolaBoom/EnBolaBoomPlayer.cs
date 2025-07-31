@@ -3,9 +3,9 @@ using ImTipsyDude.InstantECS;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace ImTipsyDude.Player
+namespace ImTipsyDude.BolaBoom.Player
 {
-    public class EnPlayer : IECSEntity
+    public class EnBolaBoomPlayer : IECSEntity
     {
         public CmpMonstoGuage CmpMonstoGuage;
     }
