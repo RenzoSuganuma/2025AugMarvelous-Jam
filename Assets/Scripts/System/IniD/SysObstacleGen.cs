@@ -1,5 +1,6 @@
 using System;
 using ImTipsyDude.IniD.Constants;
+using ImTipsyDude.IniD.Player;
 using ImTipsyDude.InstantECS;
 using Unity.Mathematics;
 using UnityEditor;
@@ -19,6 +20,11 @@ namespace ImTipsyDude.System.IniD
 
         private void OnTriggerEnter(Collider other)
         {
+            var v = other.GetComponent<CmpIniDPlayer>();
+            var apply = Math.Clamp(v.CurrentMaxSpeed * 2.0f, 0, v.MaxSpeed);
+            v.CurrentMaxSpeed = apply;
+            
+            transform.position += Vector3.forward * 10;
         }
     }
 }

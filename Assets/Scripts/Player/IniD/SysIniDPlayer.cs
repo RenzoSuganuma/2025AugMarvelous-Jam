@@ -84,7 +84,7 @@ namespace ImTipsyDude.IniD.Player
         {
             if (_isPaused) return;
 
-            _rigidbody.velocity = transform.forward * (_cmpIniDPlayer.MaxSpeed * Time.fixedDeltaTime);
+            _rigidbody.velocity = transform.forward * (_cmpIniDPlayer.CurrentMaxSpeed * Time.fixedDeltaTime);
         }
     }
 }
