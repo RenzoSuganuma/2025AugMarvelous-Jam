@@ -1,4 +1,5 @@
 using System;
+using ImTipsyDude.IniD.Constants;
 using ImTipsyDude.InstantECS;
 using R3;
 using UnityEngine;
@@ -8,7 +9,6 @@ namespace ImTipsyDude.IniD.Player
     [RequireComponent(typeof(Rigidbody))]
     public class SysIniDPlayer : IECSSystem
     {
-        private const float TileUnit = 1.0f;
         private TipsyPlayerInput _input;
         private CmpIniDPlayer _cmpIniDPlayer;
         private Rigidbody _rigidbody;
@@ -27,14 +27,14 @@ namespace ImTipsyDude.IniD.Player
             // ドラッグ左右
             if (isRight)
             {
-                transform.position += Vector3.right * TileUnit;
+                transform.position += Vector3.right * IniDConstants.TileUnit;
 
                 Debug.Log("Drag Right");
             }
 
             if (isLeft)
             {
-                transform.position -= Vector3.right * TileUnit;
+                transform.position -= Vector3.right * IniDConstants.TileUnit;
 
                 Debug.Log("Drag Left");
             }
