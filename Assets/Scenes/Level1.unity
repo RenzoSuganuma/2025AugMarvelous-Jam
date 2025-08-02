@@ -797,7 +797,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2456770324016197421, guid: b07ff21e689e140b8823717b7d6c6b3e, type: 3}
       propertyPath: MaxSpeed
-      value: 100
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456770324016197421, guid: b07ff21e689e140b8823717b7d6c6b3e, type: 3}
+      propertyPath: CurrentMaxSpeed
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3324894479191182252, guid: b07ff21e689e140b8823717b7d6c6b3e, type: 3}
       propertyPath: m_Name
@@ -904,6 +908,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObstacleGenerator
       objectReference: {fileID: 0}
+    - target: {fileID: 7276482795865854172, guid: 7579343253ba14f4ebc7b271bcef9a8c, type: 3}
+      propertyPath: Obstacles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276482795865854172, guid: 7579343253ba14f4ebc7b271bcef9a8c, type: 3}
+      propertyPath: Obstacles.Array.data[0]
+      value: 
+      objectReference: {fileID: 210928313890786109, guid: 58119c1f7d702478a8215bf947a6e3ff, type: 3}
+    - target: {fileID: 7276482795865854172, guid: 7579343253ba14f4ebc7b271bcef9a8c, type: 3}
+      propertyPath: Obstacles.Array.data[1]
+      value: 
+      objectReference: {fileID: 2582340501712232344, guid: bd45445f55a814aa89c973ccd742c523, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
