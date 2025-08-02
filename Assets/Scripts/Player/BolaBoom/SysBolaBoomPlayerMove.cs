@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using ImTipsyDude.Helper;
 using ImTipsyDude.InstantECS;
 using R3;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace ImTipsyDude.BolaBoom.Player
@@ -20,11 +21,13 @@ namespace ImTipsyDude.BolaBoom.Player
         {
         }
 
-        private void OnEndDrag(Vector2 _)
+        private void OnEndDrag(Vector2 dir)
         {
             if (_ispaused) return;
             var guage = GetEntity<EnBolaBoomPlayer>().CmpMonstoGuage;
-            _rigidbody.AddForce((Vector3.forward + Vector3.up).normalized
+            var throwDir = -dir.normalized;
+            var v = new Vector3(throwDir.x, 0, throwDir.y);
+            _rigidbody.AddForce((v + Vector3.up).normalized
                 * _cmpBolaBoomPlayer.LaunchForce *
                 guage.Progress / guage.GuageMaxValue,
                 ForceMode.VelocityChange);
