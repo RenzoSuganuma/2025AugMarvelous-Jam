@@ -1,4 +1,6 @@
+using System;
 using Cysharp.Threading.Tasks;
+using ImTipsyDude.Helper;
 using ImTipsyDude.InstantECS;
 using R3;
 using UnityEngine;
@@ -44,6 +46,7 @@ namespace ImTipsyDude.BolaBoom.Player
             _tipsyPlayerInput.OnStartDrag.Subscribe(OnStartDrag);
             _tipsyPlayerInput.OnEndDrag.Subscribe(OnEndDrag);
 
+            EnInstanceIdPool.Instance.Map.Add(nameof(SysBolaBoomPlayerMove), ID);
 
             var w = GetEntity<EnBolaBoomPlayer>().World;
             _tipsyPlayerInput.OnJumpFired.Subscribe(_ => { w.PauseResume(); });
@@ -70,6 +73,20 @@ namespace ImTipsyDude.BolaBoom.Player
             _ispaused = true;
             _storedVelocity = _rigidbody.velocity;
             _rigidbody?.Sleep();
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (other.gameObject.CompareTag("Ground")) return;
+
+            var group = other.transform.GetComponentInParent<SysEnBolaObstacleGroup>();
+            if (group != null)
+            {
+                group.Explode(transform.position);
+                GetEntity<EnBolaBoomPlayer>().World.SlowMotion();
+            }
+
+            _rigidbody.AddExplosionForce(2000, transform.position, 100);
         }
 
         #endregion
