@@ -61,6 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ExplosionPosLocal: {x: 4.62, y: 8.77, z: 0}
   Rigidbodies: []
+  CamStopTrackPlayerDirection: 30
 --- !u!114 &8154032394808587546
 MonoBehaviour:
   m_ObjectHideFlags: 0

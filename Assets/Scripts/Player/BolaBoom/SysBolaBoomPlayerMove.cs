@@ -82,7 +82,7 @@ namespace ImTipsyDude.BolaBoom.Player
             var group = other.transform.GetComponentInParent<SysEnBolaObstacleGroup>();
             if (group != null)
             {
-                group.Explode();
+                group.Explode(transform.position);
             }
 
             _rigidbody.AddExplosionForce(2000, transform.position, 100);

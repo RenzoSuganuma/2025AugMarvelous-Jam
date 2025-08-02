@@ -43,4 +43,15 @@ public class SysEnBolaObstacleGroup : IECSSystem
             );
         }
     }
+
+    public void Explode(Vector3 position)
+    {
+        foreach (var rb in _entity.Rigidbodies)
+        {
+            rb.AddExplosionForce(400,
+                position,
+                100
+            );
+        }
+    }
 }
