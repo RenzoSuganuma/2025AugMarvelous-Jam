@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using ImTipsyDude.Helper;
 using ImTipsyDude.InstantECS;
 using R3;
 using UnityEngine;
@@ -45,6 +46,7 @@ namespace ImTipsyDude.BolaBoom.Player
             _tipsyPlayerInput.OnStartDrag.Subscribe(OnStartDrag);
             _tipsyPlayerInput.OnEndDrag.Subscribe(OnEndDrag);
 
+            EnInstanceIdPool.Instance.Map.Add(nameof(SysBolaBoomPlayerMove), ID);
 
             var w = GetEntity<EnBolaBoomPlayer>().World;
             _tipsyPlayerInput.OnJumpFired.Subscribe(_ => { w.PauseResume(); });

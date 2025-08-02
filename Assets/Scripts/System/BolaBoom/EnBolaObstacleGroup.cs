@@ -6,11 +6,15 @@ public class EnBolaObstacleGroup : IECSEntity
 {
     public Vector3 ExplosionPosLocal;
     public Rigidbody[] Rigidbodies;
+    public float CamStopTrackPlayerDirection;
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-
-        Gizmos.DrawSphere(transform.position + ExplosionPosLocal, 10);
+        var explosionPos = transform.position + ExplosionPosLocal;
+        Gizmos.DrawSphere(explosionPos, 10);
+        
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(explosionPos, CamStopTrackPlayerDirection);
     }
 }
