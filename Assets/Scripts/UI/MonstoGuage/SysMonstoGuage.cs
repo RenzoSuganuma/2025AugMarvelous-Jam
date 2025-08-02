@@ -31,7 +31,12 @@ namespace ImTipsyDude.BolaBoom
                     _cmpMonstoGuage.DurationToBeMax)
                 .SetDelay(_cmpMonstoGuage.DelayToStartGuageUp)
                 .SetUpdate(UpdateType.Manual)
-                .OnUpdate(() => { _cmpMonstoGuage.ProgressForUI = en.Slider.value / en.Slider.maxValue; })
+                .OnUpdate(() =>
+                {
+                    _cmpMonstoGuage.ProgressForUI = en.Slider.value / en.Slider.maxValue;
+                    var color = en.Gradient.Evaluate(_cmpMonstoGuage.ProgressForUI);
+                    en.FillImage.color = color;
+                })
                 .OnComplete(() =>
                 {
                     en.Slider.value = 0;
@@ -51,7 +56,7 @@ namespace ImTipsyDude.BolaBoom
                 _allowGuageUp = false;
                 _cmpMonstoGuage.Progress = en.Slider.value;
                 en.Slider.value = 0;
-                _guageUpTween.Restart();
+                _guageUpTween.Rewind();
             });
 
             GetEntity<EnMonstoGuage>().World.OnPaused += OnPaused;

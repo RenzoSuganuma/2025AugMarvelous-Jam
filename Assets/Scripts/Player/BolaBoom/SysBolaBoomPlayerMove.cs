@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using ImTipsyDude.InstantECS;
 using R3;
@@ -70,6 +71,19 @@ namespace ImTipsyDude.BolaBoom.Player
             _ispaused = true;
             _storedVelocity = _rigidbody.velocity;
             _rigidbody?.Sleep();
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (other.gameObject.CompareTag("Ground")) return;
+
+            var group = other.transform.GetComponentInParent<SysEnBolaObstacleGroup>();
+            if (group != null)
+            {
+                group.Explode();
+            }
+
+            _rigidbody.AddExplosionForce(2000, transform.position, 100);
         }
 
         #endregion
