@@ -83,6 +83,7 @@ namespace ImTipsyDude.BolaBoom.Player
             if (group != null)
             {
                 group.Explode(transform.position);
+                GetEntity<EnBolaBoomPlayer>().World.SlowMotion();
             }
 
             _rigidbody.AddExplosionForce(2000, transform.position, 100);

@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using ImTipsyDude.Helper;
 using ImTipsyDude.Player;
 using ImTipsyDude.Scene;
@@ -21,7 +22,7 @@ namespace ImTipsyDude.InstantECS
         public SceneEntity CurrentScene { get; private set; }
 
         public static SceneEntity GetScene() => Instance.CurrentScene;
-        
+
         public InGameState InGameState { get; private set; }
 
         public event Action OnPaused
@@ -38,8 +39,8 @@ namespace ImTipsyDude.InstantECS
             remove => _pauseResumer.OnResume -= value;
         }
 
-        public void UpdateInGameState( InGameState state ) => InGameState = state;
-        
+        public void UpdateInGameState(InGameState state) => InGameState = state;
+
         private PauseResumer _pauseResumer;
 
         private void Start()
@@ -54,6 +55,21 @@ namespace ImTipsyDude.InstantECS
             PlayerTime.UnscaledDeltaTime = Time.unscaledDeltaTime;
 
             _pauseResumer = GetComponent<PauseResumer>();
+        }
+
+        public void SlowMotion()
+        {
+            PlayerTime.TimeScale = Time.timeScale = 0.5f;
+            PlayerTime.DeltaTime = Time.deltaTime * PlayerTime.TimeScale;
+            PlayerTime.UnscaledDeltaTime = Time.unscaledDeltaTime;
+
+            DOTween.To(() => 100f, value => { }, 1000, 1) // ダミー
+                .OnComplete(() =>
+                {
+                    PlayerTime.TimeScale = Time.timeScale = 1;
+                    PlayerTime.DeltaTime = Time.deltaTime * PlayerTime.TimeScale;
+                    PlayerTime.UnscaledDeltaTime = Time.unscaledDeltaTime;
+                }).Play();
         }
 
         public void PauseResume()
