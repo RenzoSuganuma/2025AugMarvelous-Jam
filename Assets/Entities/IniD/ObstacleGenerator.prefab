@@ -48,9 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacles:
-  - {fileID: 210928313890786109, guid: 58119c1f7d702478a8215bf947a6e3ff, type: 3}
-  - {fileID: 2582340501712232344, guid: bd45445f55a814aa89c973ccd742c523, type: 3}
   - {fileID: 8326367502562630727, guid: 6023813610769244abcd9418ca643023, type: 3}
+  - {fileID: 4961139531176934182, guid: 5bbf1fb240a3e41528c469183281a7a4, type: 3}
   PlayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -100,4 +99,4 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 5, y: 2, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.78, z: 0}
