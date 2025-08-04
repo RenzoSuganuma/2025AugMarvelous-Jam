@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JumpForce: 70
+  AlignSpeed: 5
 --- !u!114 &2527120234440000386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a66968618643f0a1c5bdb4905d8a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentMaxSpeed: 100
+  CurrentMaxSpeed: 500
   MaxSpeed: 1000
 --- !u!114 &1686113369572369031
 MonoBehaviour:
