@@ -16,9 +16,8 @@ GameObject:
   - component: {fileID: 2456770324016197421}
   - component: {fileID: 1686113369572369031}
   - component: {fileID: 432916792104409503}
-  - component: {fileID: 2548227312667449818}
-  - component: {fileID: 5881453134427339068}
-  - component: {fileID: 3368052585900234685}
+  - component: {fileID: 5179960179150614124}
+  - component: {fileID: 6333502253538352062}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -136,8 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a66968618643f0a1c5bdb4905d8a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentMaxSpeed: 0
-  MaxSpeed: 0
+  CurrentMaxSpeed: 100
+  MaxSpeed: 1000
 --- !u!114 &1686113369572369031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +176,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2548227312667449818
+--- !u!114 &5179960179150614124
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,11 +185,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3324894479191182252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2318bd571664e859897a75386b57126, type: 3}
+  m_Script: {fileID: 11500000, guid: 34fbcf172c31412c8c2b505033ab29e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpForce: 20
---- !u!114 &5881453134427339068
+--- !u!114 &6333502253538352062
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,19 +197,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3324894479191182252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e5b3d93f6054eeeb582ff10985c3f75, type: 3}
+  m_Script: {fileID: 11500000, guid: 8548cab3f0a342049a4fdd632c0a4969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3368052585900234685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3324894479191182252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ee7743649114c428e9af9b9f8f094e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cmpJumpAcceration: {fileID: 2548227312667449818}
+  RegainSpeed: 100
+  RegainKnockbackForce: 2
