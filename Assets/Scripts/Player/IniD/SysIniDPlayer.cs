@@ -85,6 +85,11 @@ namespace ImTipsyDude.IniD.Player
             if (_isPaused) return;
 
             _rigidbody.velocity = transform.forward * (_cmpIniDPlayer.CurrentMaxSpeed * Time.fixedDeltaTime);
+
+            if (!Physics.Raycast(transform.position, Vector3.down, 0.5f, LayerMask.GetMask("Ground")))
+            {
+                _rigidbody.velocity += Vector3.down * 5;
+            }
         }
 
         /// <summary> 指定した値スピードの値を上昇させる </summary>
