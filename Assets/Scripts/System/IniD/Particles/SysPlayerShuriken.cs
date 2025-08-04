@@ -34,6 +34,8 @@ public class SysPlayerShuriken : IECSSystem
 
     public void PlaySpark()
     {
+        StopSmoke();
+        
         _enPlayerShuriken.SparkParticles.SetActive(true);
 
         var duration = _cmpPlayerShuriken.JumpingDuration;
@@ -41,7 +43,11 @@ public class SysPlayerShuriken : IECSSystem
         if (duration > 0)
         {
             DOTween.To(() => 1, value => { }, 1, duration)
-                .OnComplete(() => { _enPlayerShuriken.SparkParticles.SetActive(false); });
+                .OnComplete(() =>
+                {
+                    _enPlayerShuriken.SparkParticles.SetActive(false);
+                    PlaySmoke();
+                });
         }
     }
 

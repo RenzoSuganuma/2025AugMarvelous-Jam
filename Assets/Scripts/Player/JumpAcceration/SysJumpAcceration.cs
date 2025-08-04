@@ -1,19 +1,20 @@
 using System;
+using ImTipsyDude.Helper;
 using ImTipsyDude.IniD.Player;
 using ImTipsyDude.InstantECS;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Player.JumpAcceration
 {
     public class SysJumpAcceration : IECSSystem
     {
-        public CmpJumpAcceration _cmpJumpAcceration;
+        private CmpJumpAcceration _cmpJumpAcceration;
         private Rigidbody _rigidbody;
 
         public override void OnStart()
         {
             _rigidbody = gameObject.GetComponent<Rigidbody>();
+            _cmpJumpAcceration = GetComponent<CmpJumpAcceration>();
         }
 
         private void OnCollisionEnter(Collision other)
@@ -25,6 +26,11 @@ namespace Player.JumpAcceration
                 _rigidbody.AddForce((Vector3.forward + Vector3.up).normalized
                                     * _cmpJumpAcceration.JumpForce,
                     ForceMode.Impulse);
+
+                var s = GetEntity<EnJumpAcceration>().World.CurrentScene;
+                s.PullSystem(EnInstanceIdPool.Instance.Map[nameof(SysPlayerShuriken)],
+                    out SysPlayerShuriken particle);
+                particle.PlaySpark();
 
                 GetComponent<SysIniDPlayer>().SpeedUp(_cmpJumpAcceration.JumpForce);
 
