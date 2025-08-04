@@ -12,9 +12,6 @@ GameObject:
   - component: {fileID: 741630165513102106}
   - component: {fileID: 448736574820980128}
   - component: {fileID: 6277251544138905935}
-  - component: {fileID: 679166487841827542}
-  - component: {fileID: 4053425234668282401}
-  - component: {fileID: 1732040715361658571}
   m_Layer: 0
   m_Name: JumpPlatform
   m_TagString: JumpPlat
@@ -108,41 +105,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &679166487841827542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2382820485039639372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e5b3d93f6054eeeb582ff10985c3f75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4053425234668282401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2382820485039639372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2318bd571664e859897a75386b57126, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  JumpForce: 30
---- !u!114 &1732040715361658571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2382820485039639372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ee7743649114c428e9af9b9f8f094e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cmpJumpAcceration: {fileID: 4053425234668282401}
