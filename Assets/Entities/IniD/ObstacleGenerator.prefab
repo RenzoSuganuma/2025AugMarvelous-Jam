@@ -50,6 +50,7 @@ MonoBehaviour:
   Obstacles:
   - {fileID: 8326367502562630727, guid: 6023813610769244abcd9418ca643023, type: 3}
   - {fileID: 4961139531176934182, guid: 5bbf1fb240a3e41528c469183281a7a4, type: 3}
+  - {fileID: 5326539400109397509, guid: c492d54ef9c7046f7942d2d8731e0c48, type: 3}
   PlayerMask:
     serializedVersion: 2
     m_Bits: 64
