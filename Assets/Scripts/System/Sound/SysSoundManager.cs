@@ -5,26 +5,20 @@ using UnityEngine;
 
 public class SysSoundManager : IECSSystem
 {
-    [Header("Audio Sources")]
-    public AudioSource bgmSource;
-    public AudioSource seSource;
-
-    [Header("Audio Clips")]
-    public AudioClip[] bgmClips;
-    public AudioClip[] seClips;
-
+    private EnSoundManager _enSoundManager;
     private Dictionary<string, AudioClip> bgmDict;
     private Dictionary<string, AudioClip> seDict;
 
     public override void OnStart()
     {
+        _enSoundManager = GetEntity<EnSoundManager>();
         bgmDict = new Dictionary<string, AudioClip>();
         seDict = new Dictionary<string, AudioClip>();
 
-        foreach (var clip in bgmClips)
+        foreach (var clip in _enSoundManager.bgmClips)
             bgmDict[clip.name] = clip;
 
-        foreach (var clip in seClips)
+        foreach (var clip in _enSoundManager.seClips)
             seDict[clip.name] = clip;
     }
 
@@ -32,28 +26,28 @@ public class SysSoundManager : IECSSystem
     {
         if (bgmDict.TryGetValue(name, out AudioClip clip))
         {
-            bgmSource.clip = clip;
-            bgmSource.loop = true;
-            bgmSource.Play();
+            _enSoundManager.bgmSource.clip = clip;
+            _enSoundManager.bgmSource.loop = true;
+            _enSoundManager.bgmSource.Play();
         }
     }
 
     public void StopBGM()
     {
-        bgmSource.Stop();
+        _enSoundManager.bgmSource.Stop();
     }
 
     public void PlaySE(string name)
     {
         if (seDict.TryGetValue(name, out AudioClip clip))
         {
-            seSource.PlayOneShot(clip);
+            _enSoundManager.seSource.PlayOneShot(clip);
         }
     }
 
     public void SetVolume(float bgmVolume, float seVolume)
     {
-        bgmSource.volume = bgmVolume;
-        seSource.volume = seVolume;
+        _enSoundManager.bgmSource.volume = bgmVolume;
+        _enSoundManager.seSource.volume = seVolume;
     }
 }

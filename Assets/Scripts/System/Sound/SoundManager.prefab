@@ -189,10 +189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f9a7cbadd2f29b40b0e699eb449d912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmSource: {fileID: 1467631309765847181}
-  seSource: {fileID: 2920341798839772212}
-  bgmClips: []
-  seClips: []
 --- !u!114 &6468256194562036731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,6 +201,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa063f0727df344b9afd63b3cf342a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgmSource: {fileID: 1467631309765847181}
+  seSource: {fileID: 2920341798839772212}
+  bgmClips: []
+  seClips: []
 --- !u!114 &538023990483603837
 MonoBehaviour:
   m_ObjectHideFlags: 0
