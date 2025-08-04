@@ -100,10 +100,12 @@ namespace ImTipsyDude.InstantECS
         {
             Application.Quit();
 
+            #if UNITY_EDITOR
             if (EditorApplication.isPlaying)
             {
                 EditorApplication.isPlaying = false;
             }
+            #endif
         }
 
         public void CreateEntity(out GameObject newEntity, GameObject prefab = null)
