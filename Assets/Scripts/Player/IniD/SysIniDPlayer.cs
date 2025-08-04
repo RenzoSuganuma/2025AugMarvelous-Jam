@@ -86,5 +86,12 @@ namespace ImTipsyDude.IniD.Player
 
             _rigidbody.velocity = transform.forward * (_cmpIniDPlayer.CurrentMaxSpeed * Time.fixedDeltaTime);
         }
+
+        /// <summary> 指定した値スピードの値を上昇させる </summary>
+        public void SpeedUp(float upValue)
+        {
+            _cmpIniDPlayer.CurrentMaxSpeed += upValue;
+            _rigidbody.velocity = transform.forward * (_cmpIniDPlayer.CurrentMaxSpeed * Time.fixedDeltaTime);
+        }
     }
 }
