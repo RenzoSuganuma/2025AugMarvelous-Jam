@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2318bd571664e859897a75386b57126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpForce: 200
+  JumpForce: 100
 --- !u!114 &2268891639105379337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,8 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a66968618643f0a1c5bdb4905d8a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentMaxSpeed: 500
-  MaxSpeed: 1000
+  CurrentMaxSpeed: 400
+  MaxSpeed: 1500
 --- !u!114 &1777353655774827315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,8 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8548cab3f0a342049a4fdd632c0a4969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RegainSpeed: 100
-  RegainKnockbackForce: 2
+  RegainSpeed: 300
+  RegainKnockbackForce: 1.5
 --- !u!114 &7043461695559044688
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -77,6 +77,11 @@ public class TipsyPlayerInput : MonoBehaviour, InputSystemActions.IPlayerActions
         if (context.action.name is "Move")
         {
             MoveInput = context.ReadValue<Vector2>();
+
+            if (context.started)
+            {
+                _onEndDrag.OnNext(new Vector2(MoveInput.x, 0));
+            }
         }
     }
 
