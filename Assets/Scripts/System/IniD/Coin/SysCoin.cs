@@ -12,6 +12,8 @@ public class SysCoin : IECSSystem
     private CmpCoin _cmpCoin;
     private Rigidbody _rigidbody;
     private Collider _collider;
+    
+    private bool _isGotten = false;
 
     // Start is called before the first frame update
     public override void OnStart()
@@ -37,6 +39,15 @@ public class SysCoin : IECSSystem
             currentScene.PullSystem(EnInstanceIdPool.Instance.Map[nameof(SysPlayerShuriken)],
                 out SysPlayerShuriken shuriken);
             shuriken.PlayBuff();
+            
+            // UIのカウントを増やす
+            if (!_isGotten)
+            {
+                currentScene.PullSystem(EnInstanceIdPool.Instance.Map[nameof(SysGotCoinView)],
+                    out SysGotCoinView coinView);
+                coinView.GotCoin();
+                _isGotten = true;
+            }
 
             Debug.Log("打ち上げた");
 
