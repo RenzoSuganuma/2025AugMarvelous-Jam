@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 5204630002458856839}
   - component: {fileID: 9142488934050645284}
   - component: {fileID: 133630428905467683}
+  - component: {fileID: 1863555080486789103}
+  - component: {fileID: 2527120234440000386}
+  - component: {fileID: 4194049002247689366}
   - component: {fileID: 4442066024357707638}
   - component: {fileID: 5557555850026412009}
   - component: {fileID: 2456770324016197421}
@@ -90,6 +93,44 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1863555080486789103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324894479191182252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2318bd571664e859897a75386b57126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JumpForce: 70
+--- !u!114 &2527120234440000386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324894479191182252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e5b3d93f6054eeeb582ff10985c3f75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4194049002247689366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324894479191182252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee7743649114c428e9af9b9f8f094e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cmpJumpAcceration: {fileID: 1863555080486789103}
 --- !u!65 &4442066024357707638
 BoxCollider:
   m_ObjectHideFlags: 0
