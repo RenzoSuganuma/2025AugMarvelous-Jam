@@ -6,25 +6,25 @@ using UnityEngine;
 public class SysSoundManager : IECSSystem
 {
     private EnSoundManager _enSoundManager;
-    private Dictionary<string, AudioClip> bgmDict;
-    private Dictionary<string, AudioClip> seDict;
+    private Dictionary<string, AudioClip> _bgmDict;
+    private Dictionary<string, AudioClip> _seDict;
 
     public override void OnStart()
     {
         _enSoundManager = GetEntity<EnSoundManager>();
-        bgmDict = new Dictionary<string, AudioClip>();
-        seDict = new Dictionary<string, AudioClip>();
+        _bgmDict = new Dictionary<string, AudioClip>();
+        _seDict = new Dictionary<string, AudioClip>();
 
         foreach (var clip in _enSoundManager.bgmClips)
-            bgmDict[clip.name] = clip;
+            _bgmDict[clip.name] = clip;
 
         foreach (var clip in _enSoundManager.seClips)
-            seDict[clip.name] = clip;
+            _seDict[clip.name] = clip;
     }
 
     public void PlayBGM(string name)
     {
-        if (bgmDict.TryGetValue(name, out AudioClip clip))
+        if (_bgmDict.TryGetValue(name, out AudioClip clip))
         {
             _enSoundManager.bgmSource.clip = clip;
             _enSoundManager.bgmSource.loop = true;
@@ -39,7 +39,7 @@ public class SysSoundManager : IECSSystem
 
     public void PlaySE(string name)
     {
-        if (seDict.TryGetValue(name, out AudioClip clip))
+        if (_seDict.TryGetValue(name, out AudioClip clip))
         {
             _enSoundManager.seSource.PlayOneShot(clip);
         }
