@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2323465792913132372}
   - component: {fileID: 315402231886864862}
+  - component: {fileID: 7018506491951291100}
   m_Layer: 0
   m_Name: JumpBoard
   m_TagString: JumpPlat
@@ -55,6 +56,33 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1782581909162030642, guid: 5a3985d499933e048b6dc6509b3dd9d3, type: 3}
+--- !u!54 &7018506491951291100
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8366290614402929909}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &5813887484117961313
 PrefabInstance:
   m_ObjectHideFlags: 0
