@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class SysPlayerOnCollision : IECSSystem
 {
-    [SerializeField] private float _regainSpeed;
     private CmpIniDPlayer _cmp;
+    private CmpPlayerOnCollision _cmpPlayerOnCollision;
 
     public override void OnStart()
     {
         _cmp = GetComponent<CmpIniDPlayer>();
+        _cmpPlayerOnCollision = GetComponent<CmpPlayerOnCollision>();
     }
 
     private void OnCollisionEnter(Collision other)
@@ -20,15 +21,17 @@ public class SysPlayerOnCollision : IECSSystem
             // スピードを止める
             _cmp.CurrentMaxSpeed = 0;
             Debug.Log("障害物に当たりました");
+
+            transform.position -= transform.forward * _cmpPlayerOnCollision.RegainKnockbackForce;
         }
     }
-    
+
     private void OnCollisionExit(Collision other)
     {
         if (other.gameObject.CompareTag("Obstacle"))
         {
             // スピードを止める
-            _cmp.CurrentMaxSpeed = _regainSpeed;
+            _cmp.CurrentMaxSpeed = _cmpPlayerOnCollision.RegainSpeed;
             Debug.Log("障害物に当たりました");
         }
     }
