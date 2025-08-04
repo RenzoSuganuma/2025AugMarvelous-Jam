@@ -536,6 +536,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadSpline
       objectReference: {fileID: 0}
+    - target: {fileID: 4308702554860753736, guid: b287f0aaea1364452933903ba89e262e, type: 3}
+      propertyPath: m_Spacing.x
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308702554860753736, guid: b287f0aaea1364452933903ba89e262e, type: 3}
+      propertyPath: m_Spacing.y
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 6568217327439394077, guid: b287f0aaea1364452933903ba89e262e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.3619041

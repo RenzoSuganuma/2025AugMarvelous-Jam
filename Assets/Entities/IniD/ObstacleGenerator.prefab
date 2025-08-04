@@ -52,6 +52,8 @@ MonoBehaviour:
   - {fileID: 4961139531176934182, guid: 5bbf1fb240a3e41528c469183281a7a4, type: 3}
   - {fileID: 5326539400109397509, guid: c492d54ef9c7046f7942d2d8731e0c48, type: 3}
   - {fileID: 7865755142657336311, guid: e8d7cc50af7554f0ea5f721a49d7bdce, type: 3}
+  - {fileID: 5326539400109397509, guid: 6095f7a2e87b64bf8b530e53cc53a815, type: 3}
+  - {fileID: 5065533886271091111, guid: 59af54fbde9624205a3c33d1460296fd, type: 3}
   PlayerMask:
     serializedVersion: 2
     m_Bits: 64

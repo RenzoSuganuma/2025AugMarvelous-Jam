@@ -144,4 +144,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4dda49ab794a34aea8399d4f33d1fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 5065533886271091111, guid: 8ca6436aafaa54af1b48368cb57c952c, type: 3}
+  Prefab: {fileID: 5065533886271091111, guid: 59af54fbde9624205a3c33d1460296fd, type: 3}
