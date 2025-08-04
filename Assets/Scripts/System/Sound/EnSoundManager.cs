@@ -1,0 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
+using ImTipsyDude.InstantECS;
+using UnityEngine;
+
+public class EnSoundManager : IECSEntity
+{
+}
