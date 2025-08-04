@@ -11,13 +11,22 @@ public class SysCheckPoint : IECSSystem
         _checkPoint = GetEntity<EnCheckPoint>();
     }
 
-    private void Do()
+    private void RandomInstantiate()
     {
-        Instantiate(_checkPoint.Prefab, transform.position, Quaternion.identity);
+        for (int i = 0; i < 10; i++)
+        {
+            var offset = UnityEngine.Random.insideUnitSphere;
+            Instantiate(_checkPoint.Prefab,
+                transform.position + offset,
+                Quaternion.identity);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Do();
+        if (other.CompareTag("Player"))
+        {
+            RandomInstantiate();
+        }
     }
 }

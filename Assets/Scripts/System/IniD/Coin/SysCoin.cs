@@ -12,7 +12,7 @@ public class SysCoin : IECSSystem
     private CmpCoin _cmpCoin;
     private Rigidbody _rigidbody;
     private Collider _collider;
-    
+
     private bool _isGotten = false;
 
     // Start is called before the first frame update
@@ -39,7 +39,7 @@ public class SysCoin : IECSSystem
             currentScene.PullSystem(EnInstanceIdPool.Instance.Map[nameof(SysPlayerShuriken)],
                 out SysPlayerShuriken shuriken);
             shuriken.PlayBuff();
-            
+
             // UIのカウントを増やす
             if (!_isGotten)
             {
@@ -52,7 +52,8 @@ public class SysCoin : IECSSystem
             Debug.Log("打ち上げた");
 
             //スピードを上げる値をどこから取得するか悩んでるから一旦仮置き
-            player.SpeedUp(_cmpCoin.IncreaseInSpeed);
+            if (_cmpCoin.WillSpeedUp)
+                player.SpeedUp(_cmpCoin.IncreaseInSpeed);
 
             //取得したら打ち上げる
             _rigidbody.AddForce(Vector3.up * _cmpCoin.NockUpSpeed, ForceMode.Impulse);
@@ -62,7 +63,7 @@ public class SysCoin : IECSSystem
             {
                 c.isTrigger = true;
             }
-            
+
             transform.DORotate(new Vector3(0, 360 * _cmpCoin.RotateTimesPerSec * _cmpCoin.DestoroyDuration, 0),
                 _cmpCoin.DestoroyDuration, RotateMode.FastBeyond360).OnComplete(() => Destroy(this.gameObject));
         }

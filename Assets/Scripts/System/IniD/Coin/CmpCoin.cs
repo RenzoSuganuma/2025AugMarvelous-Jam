@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 public class CmpCoin : IECSComponent
 {
     public int Score;
+    public bool WillSpeedUp = true;
     public float IncreaseInSpeed = 1000f;
     public float NockUpSpeed = 10f;
     public int RotateTimesPerSec = 3;
