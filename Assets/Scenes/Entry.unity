@@ -512,6 +512,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EntryWindow
       objectReference: {fileID: 0}
+    - target: {fileID: 1156360990069611805, guid: d6250e2684dfb4807b2628cb4837bf9e, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7104385579661554827, guid: d6250e2684dfb4807b2628cb4837bf9e, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9091272658609605241, guid: d6250e2684dfb4807b2628cb4837bf9e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
