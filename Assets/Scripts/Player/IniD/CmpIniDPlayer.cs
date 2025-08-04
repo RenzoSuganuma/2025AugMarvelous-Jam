@@ -12,7 +12,7 @@ namespace ImTipsyDude.IniD.Player
 
         public override void OnStart()
         {
-            EnInstanceIdPool.Instance.Map.Add( nameof( CmpIniDPlayer ) , ID );
+            EnInstanceIdPool.Instance.Map.Add(nameof(CmpIniDPlayer), ID);
         }
     }
 }

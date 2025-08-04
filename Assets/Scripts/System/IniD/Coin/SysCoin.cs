@@ -27,16 +27,26 @@ public class SysCoin : IECSSystem
     {
         if (other.TryGetComponent<SysIniDPlayer>(out var player))
         {
-            GetEntity<EnCoin>().World.CurrentScene.
-                PullSystem(EnInstanceIdPool.Instance.Map[nameof(SysScoreView)], out SysScoreView s);
+            var currentScene = GetEntity<EnCoin>().World.CurrentScene;
+
+            currentScene
+                .PullSystem(EnInstanceIdPool.Instance.Map[nameof(SysScoreView)], out SysScoreView s);
             s.AddScore(_cmpCoin.Score);
-            
+
+            // ここでパーティクルを出す
+            currentScene.PullSystem(EnInstanceIdPool.Instance.Map[nameof(SysPlayerShuriken)],
+                out SysPlayerShuriken shuriken);
+            shuriken.PlayBuff();
+
             Debug.Log("打ち上げた");
+
             //スピードを上げる値をどこから取得するか悩んでるから一旦仮置き
             player.SpeedUp(_cmpCoin.IncreaseInSpeed);
+
             //取得したら打ち上げる
             _rigidbody.AddForce(Vector3.up * _cmpCoin.NockUpSpeed, ForceMode.Impulse);
-            transform.DORotate(new Vector3(0, 360 * _cmpCoin.RotateTimesPerSec * _cmpCoin.DestoroyDuration, 0), _cmpCoin.DestoroyDuration,RotateMode.FastBeyond360).OnComplete(() => Destroy(this.gameObject));
+            transform.DORotate(new Vector3(0, 360 * _cmpCoin.RotateTimesPerSec * _cmpCoin.DestoroyDuration, 0),
+                _cmpCoin.DestoroyDuration, RotateMode.FastBeyond360).OnComplete(() => Destroy(this.gameObject));
         }
     }
 }

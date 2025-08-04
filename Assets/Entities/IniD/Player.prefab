@@ -224,6 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdda7bb6c9f542ba8973152bc99b57e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  JumpingDuration: 1
+  BuffDuration: 3
 --- !u!114 &3914809086483321859
 MonoBehaviour:
   m_ObjectHideFlags: 0

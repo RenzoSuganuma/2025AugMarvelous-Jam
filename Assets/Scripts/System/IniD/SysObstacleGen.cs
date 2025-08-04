@@ -1,4 +1,5 @@
 using System;
+using ImTipsyDude.Helper;
 using ImTipsyDude.IniD.Constants;
 using ImTipsyDude.IniD.Player;
 using ImTipsyDude.InstantECS;
@@ -13,20 +14,23 @@ namespace ImTipsyDude.System.IniD
     public class SysObstacleGen : IECSSystem
     {
         private EnObstacleGen _enGen;
+        private CmpIniDPlayer _cmpPlayer;
 
         public override void OnStart()
         {
             _enGen = GetEntity<EnObstacleGen>();
+
+            GetEntity<EnObstacleGen>().World.CurrentScene.PullComponent(
+                EnInstanceIdPool.Instance.Map[nameof(CmpIniDPlayer)], out _cmpPlayer);
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            var v = other.GetComponent<CmpIniDPlayer>();
-            var apply = Math.Clamp(v.CurrentMaxSpeed * 2.0f, 0, v.MaxSpeed);
-            v.CurrentMaxSpeed = apply;
+            var apply = Math.Clamp(_cmpPlayer.CurrentMaxSpeed * 2.0f, 0, _cmpPlayer.MaxSpeed);
+            _cmpPlayer.CurrentMaxSpeed = apply;
 
             transform.position += Vector3.forward * 10;
-            
+
             GenerateObstacle();
         }
 
