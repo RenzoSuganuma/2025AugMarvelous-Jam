@@ -5,6 +5,7 @@ using ImTipsyDude.IniD.Player;
 using ImTipsyDude.InstantECS;
 using UnityEngine;
 using DG.Tweening;
+using ImTipsyDude.Helper;
 
 public class SysCoin : IECSSystem
 {
@@ -20,18 +21,24 @@ public class SysCoin : IECSSystem
         {
             _rigidbody = gameObject.AddComponent<Rigidbody>();
         }
+
+        //transform.DORotate(new Vector3(0, 360, 0),);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<SysIniDPlayer>(out var player))
         {
+            GetEntity<EnCoin>().World.CurrentScene.
+                PullSystem(EnInstanceIdPool.Instance.Map[nameof(SysScoreView)], out SysScoreView s);
+            s.AddScore(_cmpCoin.Score);
+            
             Debug.Log("打ち上げた");
             //スピードを上げる値をどこから取得するか悩んでるから一旦仮置き
             player.SpeedUp(_cmpCoin.IncreaseInSpeed);
             //取得したら打ち上げる
             _rigidbody.AddForce(Vector3.up * _cmpCoin.NockUpSpeed, ForceMode.Impulse);
-            transform.DOLocalRotate(new Vector3(0, 360 * 3, 0), 1).OnComplete(() => Destroy(this.gameObject));
+            transform.DORotate(new Vector3(0, 360 * _cmpCoin.RotateTimesPerSec * _cmpCoin.DestoroyDuration, 0), _cmpCoin.DestoroyDuration,RotateMode.FastBeyond360).OnComplete(() => Destroy(this.gameObject));
         }
     }
 }
