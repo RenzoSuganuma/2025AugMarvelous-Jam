@@ -21,8 +21,6 @@ public class SysCoin : IECSSystem
         {
             _rigidbody = gameObject.AddComponent<Rigidbody>();
         }
-
-        //transform.DORotate(new Vector3(0, 360, 0),);
     }
 
     private void OnTriggerEnter(Collider other)
