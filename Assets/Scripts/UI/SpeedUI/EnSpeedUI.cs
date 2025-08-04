@@ -1,8 +1,10 @@
 ﻿using ImTipsyDude.InstantECS;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-    public class EnSpeedUI:IECSEntity
-    {
-        public TMP_Text PlayerSpeedText;
-    }
+public class EnSpeedUI : IECSEntity
+{
+    public Image[] Cells;
+    public Color[] Colors;
+}

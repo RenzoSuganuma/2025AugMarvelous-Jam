@@ -11,7 +11,7 @@ public class SysScoreView : IECSSystem
         _cmpScoreView = GetComponent<CmpScoreView>();
 
         EnInstanceIdPool.Instance.Map.Add(nameof(SysScoreView), ID);
-        
+
         UpdateScore();
     }
 
@@ -23,6 +23,6 @@ public class SysScoreView : IECSSystem
 
     public void UpdateScore()
     {
-        _cmpScoreView._text.text = $"Score: {_cmpScoreView.Score}";
+        _cmpScoreView._text.text = _cmpScoreView.Score.ToString("000000000");
     }
 }
