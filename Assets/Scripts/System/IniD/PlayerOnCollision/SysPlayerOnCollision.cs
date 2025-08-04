@@ -22,7 +22,8 @@ public class SysPlayerOnCollision : IECSSystem
             _cmp.CurrentMaxSpeed = 0;
             Debug.Log("障害物に当たりました");
 
-            transform.position -= transform.forward * _cmpPlayerOnCollision.RegainKnockbackForce;
+            transform.position -= (other.transform.position - transform.position).normalized *
+                                  _cmpPlayerOnCollision.RegainKnockbackForce;
         }
     }
 
