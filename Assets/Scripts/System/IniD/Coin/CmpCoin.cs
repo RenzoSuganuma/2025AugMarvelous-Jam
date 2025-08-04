@@ -9,6 +9,6 @@ public class CmpCoin : IECSComponent
     public int Score;
     public float IncreaseInSpeed = 1000f;
     public float NockUpSpeed = 10f;
-    [FormerlySerializedAs("RotateTimes")] public int RotateTimesPerSec = 3;
+    public int RotateTimesPerSec = 3;
     public float DestoroyDuration = 5f;
 }

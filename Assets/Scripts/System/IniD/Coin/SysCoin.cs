@@ -10,8 +10,8 @@ using ImTipsyDude.Helper;
 public class SysCoin : IECSSystem
 {
     private CmpCoin _cmpCoin;
-
     private Rigidbody _rigidbody;
+    private Collider _collider;
 
     // Start is called before the first frame update
     public override void OnStart()
@@ -45,6 +45,13 @@ public class SysCoin : IECSSystem
 
             //取得したら打ち上げる
             _rigidbody.AddForce(Vector3.up * _cmpCoin.NockUpSpeed, ForceMode.Impulse);
+
+            var colliders = GetComponents<Collider>();
+            foreach (var c in colliders)
+            {
+                c.isTrigger = true;
+            }
+            
             transform.DORotate(new Vector3(0, 360 * _cmpCoin.RotateTimesPerSec * _cmpCoin.DestoroyDuration, 0),
                 _cmpCoin.DestoroyDuration, RotateMode.FastBeyond360).OnComplete(() => Destroy(this.gameObject));
         }
