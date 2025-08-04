@@ -28,7 +28,7 @@ namespace ImTipsyDude.Camera
 
         private void Update()
         {
-            if (Entity.World.GameDimension is GameDimension.ThreeDimensional)
+            if (GetEntity<EnPlayerCamera>().World.GameDimension is GameDimension.ThreeDimensional)
             {
                 Move3D();
             }

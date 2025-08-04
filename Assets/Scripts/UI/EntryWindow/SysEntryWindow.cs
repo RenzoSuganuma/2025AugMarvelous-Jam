@@ -10,12 +10,12 @@ public class SysEntryWindow : IECSSystem
 {
     public void EnterInGame()
     {
-        Entity.World.UnLoadScene("Entry", o => { });
+        GetEntity<EnEntryWindow>().World.UnLoadScene("Entry", o => { });
     }
 
     public void QuitGame()
     {
-        Entity.World.QuitGame();
+        GetEntity<EnEntryWindow>().World.QuitGame();
     }
 
     public override void OnStart()
