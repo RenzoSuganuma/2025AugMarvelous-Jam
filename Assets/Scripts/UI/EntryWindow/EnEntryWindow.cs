@@ -7,6 +7,5 @@ using UnityEngine.UI;
 
 public class EnEntryWindow : IECSEntity
 {
-    public Button EnterInGameButton;
-    public Button ExitInGameButton;
+    public RectTransform TitleLogo;
 }

@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using ImTipsyDude.Helper;
 using ImTipsyDude.InstantECS;
 using R3;
@@ -28,14 +29,8 @@ public class SysEntryWindow : IECSSystem
         }
 
         var entity = GetEntity<EnEntryWindow>();
-        entity.EnterInGameButton.GetComponentInChildren<TMP_Text>().text = "";
-        entity.ExitInGameButton.GetComponentInChildren<TMP_Text>().text = "";
-    }
-
-    private void Update()
-    {
-        var e = GetEntity<EnEntryWindow>();
-        var condition = e.World.CurrentScene.AsyncOperation.progress >= 0.9f;
-        e.EnterInGameButton.interactable = condition;
+        entity.TitleLogo.transform
+            .DOScale(Vector3.one * 1.5f, 1)
+            .SetLoops(-1, LoopType.Yoyo);
     }
 }
