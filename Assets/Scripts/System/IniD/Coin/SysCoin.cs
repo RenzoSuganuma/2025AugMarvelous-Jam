@@ -66,6 +66,9 @@ public class SysCoin : IECSSystem
 
             transform.DORotate(new Vector3(0, 360 * _cmpCoin.RotateTimesPerSec * _cmpCoin.DestoroyDuration, 0),
                 _cmpCoin.DestoroyDuration, RotateMode.FastBeyond360).OnComplete(() => Destroy(this.gameObject));
+
+            // 音を鳴らす
+            SysSoundManager.Instance.PlaySE("se_coin_get", GetEntity<EnCoin>().Source);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ImTipsyDude.IniD.Player;
+﻿using ImTipsyDude.Helper;
+using ImTipsyDude.IniD.Player;
 using ImTipsyDude.InstantECS;
 using ImTipsyDude.Scene;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace System.IniD.Timer
         private CmpTimer _cmpTimer;
         private EnTimer _enTimer;
         private bool _isTimeOut = false;
+        private bool _awaitingTimeUp = false;
 
         public override void OnStart()
         {
@@ -36,6 +38,18 @@ namespace System.IniD.Timer
             }
 
             _enTimer.TimerText.text = _cmpTimer.TimeRemaining.ToString("0.00");
+
+            if (!_awaitingTimeUp && _cmpTimer.TimeRemaining <= 5f)
+            {
+                _enTimer.World.CurrentScene
+                    .PullSystem( EnInstanceIdPool.Instance.Map[ nameof(SysIniDPlayer) ] , out SysIniDPlayer p );
+
+                var s = p.GetSeSource();
+                
+                SysSoundManager.Instance.PlaySE("SE_Finish Countdown", s);
+                
+                _awaitingTimeUp = true;
+            }
         }
     }
 }

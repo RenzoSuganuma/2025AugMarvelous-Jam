@@ -1,6 +1,8 @@
 using System;
+using ImTipsyDude.Helper;
 using ImTipsyDude.IniD.Constants;
 using ImTipsyDude.InstantECS;
+using ImTipsyDude.Scene;
 using R3;
 using UnityEngine;
 
@@ -57,6 +59,17 @@ namespace ImTipsyDude.IniD.Player
             _input.OnJumpFired.Subscribe(_ => { w.PauseResume(); });
             w.OnPaused += OnPaused;
             w.OnResume += OnResume;
+
+            w.GetSceneAs<Level1SceneEntity>().OnStartGame.Subscribe(_ =>
+            {
+                var go = GetEntity<EnIniDPlayer>().ActivateOnStart;
+                foreach (var obj in go)
+                {
+                    obj.SetActive(true);
+                }
+            });
+
+            EnInstanceIdPool.Instance.Map.Add(nameof(SysIniDPlayer), ID);
         }
 
         private void OnDestroy()
@@ -97,6 +110,11 @@ namespace ImTipsyDude.IniD.Player
         {
             _cmpIniDPlayer.CurrentMaxSpeed += upValue;
             _rigidbody.velocity = transform.forward * (_cmpIniDPlayer.CurrentMaxSpeed * Time.fixedDeltaTime);
+        }
+
+        public AudioSource GetSeSource()
+        {
+            return GetEntity<EnIniDPlayer>().SeSource;
         }
     }
 }

@@ -16,6 +16,8 @@ public class SysCheckPoint : IECSSystem
     {
         if (_checkPoint == null) return;
 
+        SysSoundManager.Instance.PlaySE("SE_CheckPoint_sample", GetEntity<EnCheckPoint>().Source);
+
         for (int i = 0; i < 10; i++)
         {
             var offset = UnityEngine.Random.insideUnitSphere;
