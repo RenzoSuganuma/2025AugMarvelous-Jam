@@ -1,4 +1,5 @@
 using DG.Tweening;
+using ImTipsyDude.Helper;
 using ImTipsyDude.InstantECS;
 using R3;
 using TMPro;
@@ -74,6 +75,7 @@ namespace ImTipsyDude.Scene
 
         public override void OnTerminate()
         {
+            EnInstanceIdPool.Instance.Map.Clear();
         }
     }
 }

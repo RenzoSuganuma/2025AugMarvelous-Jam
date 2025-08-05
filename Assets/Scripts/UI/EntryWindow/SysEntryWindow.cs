@@ -28,8 +28,8 @@ public class SysEntryWindow : IECSSystem
         }
 
         var entity = GetEntity<EnEntryWindow>();
-        entity.EnterInGameButton.GetComponentInChildren<TMP_Text>().text = "ENTRY GAME";
-        entity.ExitInGameButton.GetComponentInChildren<TMP_Text>().text = "QUIT GAME";
+        entity.EnterInGameButton.GetComponentInChildren<TMP_Text>().text = "";
+        entity.ExitInGameButton.GetComponentInChildren<TMP_Text>().text = "";
     }
 
     private void Update()
