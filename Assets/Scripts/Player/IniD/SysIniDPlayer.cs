@@ -103,6 +103,11 @@ namespace ImTipsyDude.IniD.Player
             {
                 _rigidbody.velocity += Vector3.down * 5;
             }
+
+            if (transform.position.y < -5f)
+            {
+                transform.position += Vector3.up * 5;
+            }
         }
 
         /// <summary> 指定した値スピードの値を上昇させる </summary>
