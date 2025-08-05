@@ -1,6 +1,7 @@
 using System;
 using ImTipsyDude.InstantECS;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SysCheckPoint : IECSSystem
 {
@@ -14,14 +15,19 @@ public class SysCheckPoint : IECSSystem
     private void RandomInstantiate()
     {
         if (_checkPoint == null) return;
-        
+
         for (int i = 0; i < 10; i++)
         {
             var offset = UnityEngine.Random.insideUnitSphere;
             if (_checkPoint.Prefab != null)
+            {
+                var param = new InstantiateParameters();
+                param.scene = SceneManager.GetSceneByName("Level1");
                 Instantiate(_checkPoint.Prefab,
                     transform.position + offset,
-                    Quaternion.identity);
+                    Quaternion.identity,
+                    param);
+            }
         }
     }
 

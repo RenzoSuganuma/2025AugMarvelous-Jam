@@ -7,13 +7,11 @@ public class SysSoundManager : IECSSystem
 {
     private EnSoundManager _enSoundManager;
     private Dictionary<string, AudioClip> _bgmDict = new();
-    private Dictionary<string, AudioClip> _seDict=new();
+    private Dictionary<string, AudioClip> _seDict = new();
 
     public override void OnStart()
     {
         _enSoundManager = GetEntity<EnSoundManager>();
-        // _bgmDict = new Dictionary<string, AudioClip>();
-        // _seDict = new Dictionary<string, AudioClip>();
 
         foreach (var clip in _enSoundManager.bgmClips)
             _bgmDict[clip.name] = clip;

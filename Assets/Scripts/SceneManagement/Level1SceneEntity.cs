@@ -53,6 +53,8 @@ namespace ImTipsyDude.Scene
                     _countDownText.rectTransform.DOPunchPosition(Random.insideUnitCircle * 5, 0.5f);
                     _countDownText.text = "TIME OUT!";
                 })
+                .AppendInterval(1)
+                .AppendCallback(() => IECSWorld.Instance.UnLoadScene("Level1", o => { }))
                 .Play();
         }
 

@@ -6,6 +6,7 @@ using ImTipsyDude.InstantECS;
 using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace ImTipsyDude.System.IniD
@@ -43,7 +44,10 @@ namespace ImTipsyDude.System.IniD
 
             var genPos = Vector3.Lerp(genLineStart, genLineEnd, Random.Range(0.0f, 1.0f));
 
-            Instantiate(_enGen.Obstacles[Random.Range(0, _enGen.Obstacles.Length)], genPos, Quaternion.identity);
+            var param = new InstantiateParameters();
+            param.scene = SceneManager.GetSceneByName("Level1");
+
+            Instantiate(_enGen.Obstacles[Random.Range(0, _enGen.Obstacles.Length)], genPos, Quaternion.identity, param);
         }
     }
 }
