@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using ImTipsyDude.InstantECS;
 using UnityEngine;
 
-public class EnSoundManager : IECSEntity
+public class EnSoundManager : MonoBehaviour
 {
     [Header("Audio Sources")]
     public AudioSource bgmSource;

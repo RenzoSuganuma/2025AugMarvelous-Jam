@@ -17,6 +17,7 @@ namespace ImTipsyDude.Scene
             DOTween.Sequence()
                 .AppendCallback(() =>
                 {
+                    SysSoundManager.Instance.PlaySE("");
                     _countDownText.rectTransform.DOPunchPosition(Random.insideUnitCircle * 5, 0.5f);
                     _countDownText.text = "3";
 
