@@ -23,6 +23,8 @@ namespace ImTipsyDude.InstantECS
 
         public static SceneEntity GetScene() => Instance.CurrentScene;
 
+        public T GetSceneAs<T>() where T : SceneEntity => Instance.CurrentScene as T;
+
         public InGameState InGameState { get; private set; }
 
         public event Action OnPaused
@@ -100,12 +102,12 @@ namespace ImTipsyDude.InstantECS
         {
             Application.Quit();
 
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (EditorApplication.isPlaying)
             {
                 EditorApplication.isPlaying = false;
             }
-            #endif
+#endif
         }
 
         public void CreateEntity(out GameObject newEntity, GameObject prefab = null)

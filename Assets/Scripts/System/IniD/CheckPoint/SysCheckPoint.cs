@@ -13,12 +13,15 @@ public class SysCheckPoint : IECSSystem
 
     private void RandomInstantiate()
     {
+        if (_checkPoint == null) return;
+        
         for (int i = 0; i < 10; i++)
         {
             var offset = UnityEngine.Random.insideUnitSphere;
-            Instantiate(_checkPoint.Prefab,
-                transform.position + offset,
-                Quaternion.identity);
+            if (_checkPoint.Prefab != null)
+                Instantiate(_checkPoint.Prefab,
+                    transform.position + offset,
+                    Quaternion.identity);
         }
     }
 

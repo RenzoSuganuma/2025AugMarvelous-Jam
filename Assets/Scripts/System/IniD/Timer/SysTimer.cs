@@ -1,5 +1,6 @@
 ﻿using ImTipsyDude.IniD.Player;
 using ImTipsyDude.InstantECS;
+using ImTipsyDude.Scene;
 using UnityEngine;
 
 namespace System.IniD.Timer
@@ -18,7 +19,8 @@ namespace System.IniD.Timer
 
         public void Update()
         {
-            if (GetEntity<EnTimer>().World.InGameState == InGameState.Waiting) return;
+            var world = GetEntity<EnTimer>().World;
+            if (world.InGameState == InGameState.Waiting) return;
 
             if (_cmpTimer.TimeRemaining > 0)
             {
@@ -27,7 +29,9 @@ namespace System.IniD.Timer
             else if (!_isTimeOut && _cmpTimer.TimeRemaining <= 0)
             {
                 _cmpTimer.TimeRemaining = 0f;
-                _enTimer.OnTimeOut();
+                world.UpdateInGameState(InGameState.Waiting);
+                world.GetSceneAs<Level1SceneEntity>().OnTimeOut();
+                _enTimer.OnTimeOut?.Invoke();
                 _isTimeOut = true;
             }
 

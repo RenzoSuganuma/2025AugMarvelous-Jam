@@ -45,6 +45,17 @@ namespace ImTipsyDude.Scene
                 .Play();
         }
 
+        public void OnTimeOut()
+        {
+            DOTween.Sequence()
+                .AppendCallback(() =>
+                {
+                    _countDownText.rectTransform.DOPunchPosition(Random.insideUnitCircle * 5, 0.5f);
+                    _countDownText.text = "TIME OUT!";
+                })
+                .Play();
+        }
+
         public override void OnUpdate()
         {
         }
