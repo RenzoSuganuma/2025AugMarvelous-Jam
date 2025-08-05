@@ -5,5 +5,5 @@ using UnityEngine;
 
 public class EnCoin : IECSEntity
 {
-    
+    public AudioSource Source;
 }
