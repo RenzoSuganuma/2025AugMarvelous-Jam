@@ -82,7 +82,7 @@ namespace ImTipsyDude.IniD.Player
 
         private void FixedUpdate()
         {
-            if (_isPaused) return;
+            if (_isPaused || GetEntity<EnIniDPlayer>().World.InGameState == InGameState.Waiting) return;
 
             _rigidbody.velocity = transform.forward * (_cmpIniDPlayer.CurrentMaxSpeed * Time.fixedDeltaTime);
 

@@ -190,7 +190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmSource: {fileID: 1467631309765847181}
   seSource: {fileID: 2920341798839772212}
-  bgmClips: []
+  bgmClips:
+  - {fileID: 8300000, guid: 996b526db9b624757aecb3b1b417e46f, type: 3}
   seClips:
   - {fileID: 8300000, guid: c02b1b06784a54f17ae16ec4227a95c3, type: 3}
   - {fileID: 8300000, guid: 88d7b5c497f27443aae070623718cb41, type: 3}

@@ -35,6 +35,8 @@ namespace Player.JumpAcceration
                 GetComponent<SysIniDPlayer>().SpeedUp(_cmpJumpAcceration.JumpForce);
 
                 Destroy(other.gameObject, 1);
+
+                SysSoundManager.Instance.PlaySE("SE_Acceleration", GetEntity<EnJumpAcceration>().SeSource);
             }
         }
     }

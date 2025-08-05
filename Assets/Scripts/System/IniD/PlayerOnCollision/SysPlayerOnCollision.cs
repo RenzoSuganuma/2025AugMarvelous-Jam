@@ -22,8 +22,19 @@ public class SysPlayerOnCollision : IECSSystem
             _cmp.CurrentMaxSpeed = 0;
             Debug.Log("障害物に当たりました");
 
-            transform.position -= (other.transform.position - transform.position).normalized *
-                                  _cmpPlayerOnCollision.RegainKnockbackForce;
+            if (gameObject.TryGetComponent(out Rigidbody rb))
+            {
+                rb.AddForce(((other.transform.position - transform.position).normalized + Vector3.up).normalized
+                            * _cmpPlayerOnCollision.RegainKnockbackForce,
+                    ForceMode.Impulse);
+            }
+            else
+            {
+                rb = gameObject.AddComponent<Rigidbody>();
+                rb.AddForce(((other.transform.position - transform.position).normalized + Vector3.up).normalized
+                            * _cmpPlayerOnCollision.RegainKnockbackForce,
+                    ForceMode.Impulse);
+            }
         }
     }
 

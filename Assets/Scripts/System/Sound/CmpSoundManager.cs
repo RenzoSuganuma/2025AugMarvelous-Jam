@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using ImTipsyDude.InstantECS;
 using UnityEngine;
 
-public class CmpSoundManager : IECSComponent
+public class CmpSoundManager : MonoBehaviour
 {
-
 }
