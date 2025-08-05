@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using ImTipsyDude.Helper;
 using ImTipsyDude.IniD.Player;
 using ImTipsyDude.InstantECS;
@@ -37,6 +38,9 @@ namespace Player.JumpAcceration
                 Destroy(other.gameObject, 1);
 
                 SysSoundManager.Instance.PlaySE("SE_Acceleration", GetEntity<EnJumpAcceration>().SeSource);
+
+                // アニメーション
+                transform.DOPunchRotation(Vector3.right, 0.5f);
             }
         }
     }
