@@ -53343,7 +53343,6 @@ GameObject:
   - component: {fileID: 6121076223238233836}
   - component: {fileID: 6276372011643816396}
   - component: {fileID: 1116065745004258268}
-  - component: {fileID: 4814707311445705461}
   m_Layer: 0
   m_Name: FX_PowerUp_Coin_not
   m_TagString: Untagged
@@ -58210,19 +58209,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &4814707311445705461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6593209017109182807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57e983e7e4de77347aa726b43efd6b44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickupEffect: {fileID: 7888857835762348946, guid: 84dab4a8cf751fc4181b5f09a6186c21, type: 3}
 --- !u!1 &7917690912396787592
 GameObject:
   m_ObjectHideFlags: 0
