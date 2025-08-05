@@ -31,12 +31,17 @@ namespace Player.JumpAcceration
                 s.PullSystem(EnInstanceIdPool.Instance.Map[nameof(SysPlayerShuriken)],
                     out SysPlayerShuriken particle);
                 particle.PlaySpark();
-
                 GetComponent<SysIniDPlayer>().SpeedUp(_cmpJumpAcceration.JumpForce);
 
                 Destroy(other.gameObject, 1);
 
                 SysSoundManager.Instance.PlaySE("SE_Acceleration", GetEntity<EnJumpAcceration>().SeSource);
+                //なんかうまく動かなかった。Keyが登録されてないとか
+                // var sl = GetEntity<EnSyutyuLine>().World.CurrentScene;
+                // sl.PullSystem(EnInstanceIdPool.Instance.Map[nameof(SysSyutyuLine)],
+                //     out SysSyutyuLine line);
+                // line.Syutyu();
+                GetComponent<SysSyutyuLine>().Syutyu();
             }
         }
     }
