@@ -9,8 +9,8 @@ public class SysResultView : IECSSystem
         _cmpResultView = GetComponent<CmpResultView>();
         var scoreMan = IniDScoreManager.Instance;
 
-        _cmpResultView.CoinCountText.text = $"Coin:{scoreMan.GotCoin}";
-        _cmpResultView.ScoreText.text =$"Score{scoreMan.Score}";
-        _cmpResultView.RemainTimeText.text =$"RemainTime:{scoreMan.RemainingTime.ToString("F1")}";
+        _cmpResultView.CoinCountText.text = scoreMan.GotCoin.ToString("0000");
+        // _cmpResultView.ScoreText.text =$"Score{scoreMan.Score}";
+        // _cmpResultView.RemainTimeText.text =$"RemainTime:{scoreMan.RemainingTime.ToString("F1")}";
     }
 }
