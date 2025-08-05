@@ -1,4 +1,6 @@
+using DG.Tweening;
 using ImTipsyDude.InstantECS;
+using UnityEngine;
 
 namespace ImTipsyDude.Scene
 {
@@ -7,7 +9,16 @@ namespace ImTipsyDude.Scene
         public override void OnStart()
         {
             IECSWorld.Instance.StartLoadNextScene("Exit");
-            IECSWorld.Instance.UpdateInGameState(InGameState.Playing);
+            IECSWorld.Instance.UpdateInGameState(InGameState.Waiting);
+
+            DOTween.Sequence()
+                .AppendCallback(() => Debug.Log("3"))
+                .AppendInterval(0.5f)
+                .AppendCallback(() => Debug.Log("2"))
+                .AppendInterval(0.5f)
+                .AppendCallback(() => Debug.Log("1"))
+                .AppendInterval(0.5f)
+                .AppendCallback(() => IECSWorld.Instance.UpdateInGameState(InGameState.Playing)).Play();
         }
 
         public override void OnUpdate()

@@ -18,6 +18,8 @@ namespace System.IniD.Timer
 
         public void Update()
         {
+            if (GetEntity<EnTimer>().World.InGameState == InGameState.Waiting) return;
+
             if (_cmpTimer.TimeRemaining > 0)
             {
                 _cmpTimer.TimeRemaining -= Time.deltaTime;
@@ -28,6 +30,7 @@ namespace System.IniD.Timer
                 _enTimer.OnTimeOut();
                 _isTimeOut = true;
             }
+
             _enTimer.TimerText.text = _cmpTimer.TimeRemaining.ToString("0.00");
         }
     }

@@ -38,8 +38,8 @@ namespace ImTipsyDude.System.IniD
         {
             var cmp = _enGen.GetComponent<CmpObstacleGen>();
             var basepos = transform.position + (Vector3.forward * cmp.SpawnDistance);
-            var genLineStart = basepos + (Vector3.left * cmp.ColliderSize.x);
-            var genLineEnd = basepos + (Vector3.right * cmp.ColliderSize.x);
+            var genLineStart = basepos + (Vector3.left * (cmp.ColliderSize.x - IniDConstants.TileUnit));
+            var genLineEnd = basepos + (Vector3.right * (cmp.ColliderSize.x - IniDConstants.TileUnit));
 
             var genPos = Vector3.Lerp(genLineStart, genLineEnd, Random.Range(0.0f, 1.0f));
 
