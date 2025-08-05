@@ -32,7 +32,6 @@ namespace Player.JumpAcceration
                 s.PullSystem(EnInstanceIdPool.Instance.Map[nameof(SysPlayerShuriken)],
                     out SysPlayerShuriken particle);
                 particle.PlaySpark();
-
                 GetComponent<SysIniDPlayer>().SpeedUp(_cmpJumpAcceration.JumpForce);
 
                 Destroy(other.gameObject, 1);
@@ -41,6 +40,12 @@ namespace Player.JumpAcceration
 
                 // アニメーション
                 transform.DOPunchRotation(Vector3.right, 0.5f);
+                //なんかうまく動かなかった。Keyが登録されてないとか
+                // var sl = GetEntity<EnSyutyuLine>().World.CurrentScene;
+                // sl.PullSystem(EnInstanceIdPool.Instance.Map[nameof(SysSyutyuLine)],
+                //     out SysSyutyuLine line);
+                // line.Syutyu();
+                GetComponent<SysSyutyuLine>().Syutyu();
             }
         }
     }

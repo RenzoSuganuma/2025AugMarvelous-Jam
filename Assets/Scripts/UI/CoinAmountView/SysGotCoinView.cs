@@ -1,4 +1,5 @@
 using ImTipsyDude.Helper;
+using ImTipsyDude.IniD.Event;
 using ImTipsyDude.InstantECS;
 
 
@@ -13,6 +14,11 @@ public class SysGotCoinView : IECSSystem
         _cmpCoinView = GetComponent<CmpGotCoinView>();
 
         EnInstanceIdPool.Instance.Map.Add(nameof(SysGotCoinView), ID);
+
+        IniDEventHandler.Instance.OnTimeOut += () =>
+        {
+            IniDScoreManager.Instance.GotCoin = _cmpCoinView.GotCount;
+        };
     }
 
     public void GotCoin()

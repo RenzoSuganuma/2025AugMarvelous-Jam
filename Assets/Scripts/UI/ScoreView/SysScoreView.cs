@@ -1,5 +1,6 @@
 using System;
 using ImTipsyDude.Helper;
+using ImTipsyDude.IniD.Event;
 using ImTipsyDude.InstantECS;
 
 public class SysScoreView : IECSSystem
@@ -11,6 +12,11 @@ public class SysScoreView : IECSSystem
         _cmpScoreView = GetComponent<CmpScoreView>();
 
         EnInstanceIdPool.Instance.Map.Add(nameof(SysScoreView), ID);
+
+        IniDEventHandler.Instance.OnTimeOut += () =>
+        {
+            IniDScoreManager.Instance.Score = _cmpScoreView.Score;
+        };
 
         UpdateScore();
     }
