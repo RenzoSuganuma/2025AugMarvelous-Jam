@@ -56,7 +56,16 @@ namespace ImTipsyDude.IniD.Player
             _cmpIniDPlayer = GetComponent<CmpIniDPlayer>();
 
             var w = GetEntity<EnIniDPlayer>().World;
-            _input.OnJumpFired.Subscribe(_ => { w.PauseResume(); });
+            _input.OnJumpFired.Subscribe(_ =>
+            {
+                GetEntity<EnIniDPlayer>().World.CurrentScene.PullSystem(
+                    EnInstanceIdPool.Instance.Map[nameof(SysGotCoinView)], out SysGotCoinView view);
+
+                if (view.UseCoin())
+                {
+                    SpeedUp(300);
+                }
+            });
             w.OnPaused += OnPaused;
             w.OnResume += OnResume;
 

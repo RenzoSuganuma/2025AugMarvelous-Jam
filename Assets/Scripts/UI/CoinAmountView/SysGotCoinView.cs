@@ -9,6 +9,7 @@ public class SysGotCoinView : IECSSystem
 {
     private EnGotCoinView _enCoinView;
     private CmpGotCoinView _cmpCoinView;
+    private Tweener _tween;
 
     public override void OnStart()
     {
@@ -24,6 +25,17 @@ public class SysGotCoinView : IECSSystem
     {
         _cmpCoinView.GotCount++;
         _enCoinView.Text.text = $"X{_cmpCoinView.GotCount}";
-        _enCoinView.Text.transform.DOPunchScale(Random.insideUnitCircle * 3, 0.5f);
+    }
+
+    public bool UseCoin()
+    {
+        var b = _cmpCoinView.GotCount - 1 > 0;
+        if (b)
+        {
+            _cmpCoinView.GotCount--;
+            _enCoinView.Text.text = $"X{_cmpCoinView.GotCount}";
+        }
+
+        return b;
     }
 }
