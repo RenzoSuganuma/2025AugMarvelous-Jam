@@ -63,6 +63,8 @@ namespace ImTipsyDude.IniD.Player
 
                 if (view.UseCoin())
                 {
+                    
+                    _cmpIniDPlayer.MaxSpeed += 300;
                     SpeedUp(300);
                 }
             });
