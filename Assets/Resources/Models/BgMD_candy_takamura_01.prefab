@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6560019686662319066
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 14c523cd2cce1794aae8e56428d189d9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1264.2697
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 14c523cd2cce1794aae8e56428d189d9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 14c523cd2cce1794aae8e56428d189d9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -282.2777
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 14c523cd2cce1794aae8e56428d189d9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7031247
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 14c523cd2cce1794aae8e56428d189d9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 14c523cd2cce1794aae8e56428d189d9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 14c523cd2cce1794aae8e56428d189d9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7110666
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 14c523cd2cce1794aae8e56428d189d9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 14c523cd2cce1794aae8e56428d189d9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 14c523cd2cce1794aae8e56428d189d9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 14c523cd2cce1794aae8e56428d189d9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e96aee598c73d984d9c6cdde2583d293, type: 2}
+    - target: {fileID: 919132149155446097, guid: 14c523cd2cce1794aae8e56428d189d9, type: 3}
+      propertyPath: m_Name
+      value: BgMD_candy_takamura_01
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 14c523cd2cce1794aae8e56428d189d9, type: 3}
